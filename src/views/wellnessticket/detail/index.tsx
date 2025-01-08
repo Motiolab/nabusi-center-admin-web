@@ -29,7 +29,7 @@ const WellnessTicketDetail = () => {
                 <Flex justify="space-between">
                     <Flex align="center" gap={16}>
                         <div>발급 목록 (100000)</div>
-                        <ExtensionTicket />
+                        {wellnessTicketDetail && <ExtensionTicket wellnessTicketId={wellnessTicketDetail.id} wellnessTicketName={wellnessTicketDetail.name} />}
                     </Flex>
                     <div>
                         <Input

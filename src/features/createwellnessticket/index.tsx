@@ -132,7 +132,7 @@ const CreateWellnessTicket = () => {
                 </div>
             </Flex>
             <div style={{ marginLeft: 124, marginTop: 16 }}>
-                <Checkbox value={isUsableDateManually} onChange={(e) => setIsUsableDateManually(e.target.checked)}>직접입력</Checkbox>
+                <Checkbox checked={isUsableDateManually} onChange={(e) => setIsUsableDateManually(e.target.checked)}>직접입력</Checkbox>
                 {isUsableDateManually && <div style={{ marginTop: 16 }}>
                     <Input
                         type="number"
