@@ -1,0 +1,9 @@
+.tableColumnStyle {
+    background-color: var(--Base-Base-White) !important;
+}
+th.tableColumnStyle::before{
+    background-color: transparent !important;
+}
+.tableCheckBox > div > div > div > div > div > table > thead > tr > th:first-child{
+    background-color: var(--Base-Base-White) !important;
+}

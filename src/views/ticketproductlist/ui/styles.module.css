@@ -1,0 +1,26 @@
+.searchInput::placeholder{
+    color: var(--Neutrals-Neutrals500);
+    font-size: 14px;
+}
+.tableColumnStyle {
+    background-color: var(--Base-Base-White) !important;
+}
+th.tableColumnStyle::before{
+    background-color: transparent !important;
+}
+.ticketProductTable thead tr th{
+    color: var(--Neutrals-Neutrals700) !important;
+    font-weight: 600 !important;
+}
+.ticketProductTable tbody{
+    color: var(--Base-Base-Black) !important;
+}
+.tablePagenation li{
+    border: 0px !important;
+}
+.tablePagenation li a{
+    background-color: var(--Neutrals-Neutrals100) !important;
+    color: var(--Base-Base-Black) !important;
+    border-radius: var(--Radiussm) !important;
+    
+}

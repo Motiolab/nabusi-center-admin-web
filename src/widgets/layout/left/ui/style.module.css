@@ -1,0 +1,24 @@
+.layoutLeft {
+    transition: width 0.3s ease, min-width 0.3s ease;
+    background-color: var(--Base-Base-White);
+    width: 27%;
+    color: var(--Neutrals-Neutrals900);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px;
+    border-right: 1px solid var(--Neutrals-Neutrals200);
+    max-width: 272px;
+}
+
+.layoutLeftActive {
+    width: 52px;
+}
+
+.layoutCollapsedButton {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    padding: 14px;
+    cursor: pointer;
+    user-select: none;
+}

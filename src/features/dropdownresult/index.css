@@ -1,0 +1,14 @@
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-result-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--Spacings) var(--Spacingsm) var(--Spacings) var(--Spacingsm);
+    border: 1px solid var(--Neutrals-Neutrals200);
+    border-radius: var(--Spacingxs);
+    color: var(--Neutrals-Neutrals500);
+    cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.tab-item{
+    padding: var(--Spacingsm);
+    font-weight: 600;
+    font-size: 14px;
+    width: 138px;
+    height: var(--Spacingl);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--Neutrals-Neutrals200);
+    color: var(--Neutrals-Neutrals500);
+}
+.tab-item.select{
+    background-color: var(--Base-Base-White);
+    border-top: 1px solid var(--Base-Base-Black);
+    color: var(--Base-Base-Black);
+}

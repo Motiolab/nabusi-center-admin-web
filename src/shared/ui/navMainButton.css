@@ -1,0 +1,23 @@
+.nav-main-button{
+    display: flex;
+    align-items: flex-end;
+    gap: var(--Spacingsm);
+    cursor: pointer;
+    border-radius: var(--Radiusxl);
+    padding: var(--Spacingm);
+    text-decoration: none;
+    user-select:none;
+    color:var(--Neutrals-Neutrals700);
+    /* overflow: hidden;
+    white-space:nowrap;
+    min-width: 24px; */
+}
+.nav-main-button.clicked{
+    color:var(--Primary-Primary600);
+    background-color:var(--Primary-Primary50);
+}
+.nav-text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}

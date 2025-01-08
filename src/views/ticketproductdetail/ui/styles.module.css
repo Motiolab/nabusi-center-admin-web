@@ -1,0 +1,36 @@
+.searchInput::placeholder{
+    color: var(--Neutrals-Neutrals500);
+    font-size: 14px;
+}
+.ticketProductTable thead tr th::before{
+    background-color: transparent !important;
+}
+.ticketProductTable thead tr th{
+    color: var(--Neutrals-Neutrals700) !important;
+    font-weight: 600 !important;
+    background-color: var(--Base-Base-White) !important;
+}
+.ticketProductTable tbody{
+    color: var(--Base-Base-Black) !important;
+}
+.tablePagenation {
+    margin: 32px 0 0 0 !important;
+}
+.tablePagenation li{
+    border: 0px !important;
+}
+.tablePagenation li a{
+    background-color: var(--Neutrals-Neutrals100) !important;
+    color: var(--Base-Base-Black) !important;
+    border-radius: var(--Radiussm) !important;
+    
+}
+.inputNumberFocusWithin > div > div:hover,
+.inputNumberFocusWithin > div > div:focus-within{
+    border-block: 1px solid var(--Neutrals-Neutrals200);
+    box-shadow: none;
+}
+.inputNumberFocusWithin > div > div > div > input{
+    text-align: center !important;
+    height: 44px;
+}

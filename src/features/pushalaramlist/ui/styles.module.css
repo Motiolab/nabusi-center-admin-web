@@ -1,0 +1,44 @@
+.searchInput::placeholder{
+    color: var(--Neutrals-Neutrals500);
+    font-size: 14px;
+}
+.tableColumnStyle {
+    background-color: var(--Base-Base-White) !important;
+    color: var(--NeutralsNeutrals700) !important;
+}
+th.tableColumnStyle::before{
+    background-color: transparent !important;
+}
+.pushAlaramTable thead tr th{
+    color: var(--Neutrals-Neutrals700) !important;
+    font-weight: 600 !important;
+}
+.pushAlaramTable tbody{
+    color: var(--Base-Base-Black) !important;
+}
+.tablePagenation li{
+    border: 0px !important;
+}
+.tablePagenation li a{
+    background-color: var(--Neutrals-Neutrals100) !important;
+    color: var(--Base-Base-Black) !important;
+    border-radius: var(--Radiussm) !important;
+    
+}
+.customDatePicker div:nth-child(1) input{
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 0;
+    text-align: right;
+}
+.customDatePicker div:nth-child(2){
+    padding-inline: 3px;
+}
+.customDatePicker div:nth-child(3) input{
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 0;
+    text-align: left;
+}

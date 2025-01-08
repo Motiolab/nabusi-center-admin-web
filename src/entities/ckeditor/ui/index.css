@@ -1,0 +1,20 @@
+/* ckeditor5 css start */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.ck-content {
+	line-height: 1.6;
+	word-break: break-word;
+}
+.editor-container.editor-container_classic-editor{
+	width: 100%;
+	margin-right: 44px;
+	
+}
+.ck.ck-content{
+	max-height: 430px;
+	background-color: var(--Base-Base-White) !important;
+}
+.ck.ck-toolbar{
+	background-color: var(--Base-Base-White);
+}
+/* ckeditor5 css end */

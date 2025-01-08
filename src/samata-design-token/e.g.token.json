@@ -1,0 +1,816 @@
+{
+  "Design System/light": {
+    "Base": {
+      "Base White": {
+        "value": "{Gray.white}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Base Black": {
+        "value": "{Gray.Balck}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      }
+    },
+    "Primary": {
+      "Primary": {
+        "value": "{Blue.B500}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary100": {
+        "value": "{Blue.B100}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary200": {
+        "value": "{Blue.B200}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary300": {
+        "value": "{Blue.B300}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary400": {
+        "value": "{Blue.B400}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary500": {
+        "value": "{Blue.B500}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary600": {
+        "value": "{Blue.B600}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary700": {
+        "value": "{Blue.B700}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary800": {
+        "value": "{Blue.B800}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary900": {
+        "value": "{Blue.B900}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Primary50": {
+        "value": "{Blue.B50}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      }
+    },
+    "Secondary": {
+      "Secondary": {
+        "value": "#aab9c5",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary100": {
+        "value": "#e7ebef",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary200": {
+        "value": "#dae1e7",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary300": {
+        "value": "#ced7de",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary400": {
+        "value": "#c2cdd6",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary500": {
+        "value": "#b6c3cd",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary600": {
+        "value": "#92a5b5",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary700": {
+        "value": "#7991a4",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary800": {
+        "value": "#637d92",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary900": {
+        "value": "#4a5e6d",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Secondary1000": {
+        "value": "#323f49",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      }
+    },
+    "Success": {
+      "Success": {
+        "value": "{Green.E400}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success100": {
+        "value": "{Green.E100}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success200": {
+        "value": "{Green.E200}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success300": {
+        "value": "{Green.E300}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success50": {
+        "value": "{Green.E50}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success400": {
+        "value": "{Green.E400}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success500": {
+        "value": "{Green.E500}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success600": {
+        "value": "{Green.E600}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success700": {
+        "value": "{Green.E700}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success800": {
+        "value": "{Green.E800}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Success900": {
+        "value": "{Green.E900}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      }
+    },
+    "Warning": {
+      "Warning": {
+        "value": "{Orange.O200}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Warning100": {
+        "value": "{Orange.O100}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Warning200": {
+        "value": "{Orange.O200}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Warning300": {
+        "value": "{Orange.O300}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      }
+    },
+    "Error": {
+      "Error": {
+        "value": "{Red.R400}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Error300": {
+        "value": "{Red.R300}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Error400": {
+        "value": "{Red.R400}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Error500": {
+        "value": "{Red.R500}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Error200": {
+        "value": "{Red.R200}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Error50": {
+        "value": "{Red.R50}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Error600": {
+        "value": "{Red.R600}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Error100": {
+        "value": "{Red.R100}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Error700": {
+        "value": "{Red.R700}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      }
+    },
+    "Neutrals": {
+      "Neutrals100": {
+        "value": "{Gray.G100}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals200": {
+        "value": "{Gray.G200}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals300": {
+        "value": "{Gray.G300}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals400": {
+        "value": "{Gray.G400}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals500": {
+        "value": "{Gray.G500}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals600": {
+        "value": "{Gray.G600}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals700": {
+        "value": "{Gray.G700}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals800": {
+        "value": "{Gray.G800}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals900": {
+        "value": "{Gray.G900}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "Neutrals50": {
+        "value": "{Gray.G50}",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      }
+    },
+    "Transparent": {
+      "T100": {
+        "value": "#0000004d",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "T200": {
+        "value": "#000000b3",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      },
+      "T300": {
+        "value": "#000000e6",
+        "type": "color",
+        "parent": "Design System/light",
+        "description": ""
+      }
+    },
+    "Spacing": {
+      "base": {
+        "value": "16px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "1rem"
+      },
+      "xxs": {
+        "value": "2px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.125rem"
+      },
+      "xs": {
+        "value": "4px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.25rem"
+      },
+      "s": {
+        "value": "8px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.5rem"
+      },
+      "sm": {
+        "value": "12px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.75rem"
+      },
+      "m": {
+        "value": "14px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.875rem"
+      },
+      "ml": {
+        "value": "20px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "1.25rem"
+      },
+      "l": {
+        "value": "24px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "1.5rem"
+      },
+      "xl": {
+        "value": "40px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "2.5rem"
+      }
+    },
+    "Radius": {
+      "xs": {
+        "value": "2px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.125rem"
+      },
+      "s": {
+        "value": "4px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.25rem"
+      },
+      "sm": {
+        "value": "8px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.5rem"
+      },
+      "m": {
+        "value": "12px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "0.75rem"
+      },
+      "ml": {
+        "value": "16px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "1rem"
+      },
+      "lg": {
+        "value": "24px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "1.5rem"
+      },
+      "xl": {
+        "value": "36px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "2.25rem"
+      },
+      "Round": {
+        "value": "999px",
+        "type": "dimension",
+        "parent": "Design System/light",
+        "description": "",
+        "oldValue": "62.4375rem"
+      }
+    }
+  },
+  "Color/Value": {
+    "Blue": {
+      "B100": {
+        "value": "#bee0ff",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B200": {
+        "value": "#95cdff",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B300": {
+        "value": "#6bb9ff",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B600": {
+        "value": "#348cf0",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B400": {
+        "value": "#4da9ff",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B500": {
+        "value": "#369aff",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B700": {
+        "value": "#307add",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B800": {
+        "value": "#2d68ca",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B900": {
+        "value": "#2749ab",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "B50": {
+        "value": "#e4f3ff",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      }
+    },
+    "Green": {
+      "E400": {
+        "value": "#15b097",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E100": {
+        "value": "#b2e3d9",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E50": {
+        "value": "#e0f4f0",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E200": {
+        "value": "#7fd2c1",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E300": {
+        "value": "#49bfa9",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E500": {
+        "value": "#00a184",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E600": {
+        "value": "#009478",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E700": {
+        "value": "#008368",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E800": {
+        "value": "#007359",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "E900": {
+        "value": "#00573e",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      }
+    },
+    "Orange": {
+      "O100": {
+        "value": "#fdc886",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "O200": {
+        "value": "#ffaf4d",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "O300": {
+        "value": "#cc7914",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      }
+    },
+    "Red": {
+      "R300": {
+        "value": "#e57373",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "R400": {
+        "value": "#ef5350",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "R500": {
+        "value": "#e53935",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "R200": {
+        "value": "#ef9a9a",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "R50": {
+        "value": "#ffebee",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "R100": {
+        "value": "#ffcdd2",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "R600": {
+        "value": "#d32f2f",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "R700": {
+        "value": "#b71c1c",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      }
+    },
+    "Gray": {
+      "white": {
+        "value": "#fcfcfc",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G50": {
+        "value": "#f2f3f5",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G100": {
+        "value": "#e8ebed",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G200": {
+        "value": "#d2d6db",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G300": {
+        "value": "#bbc2c9",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G400": {
+        "value": "#a4adb6",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G500": {
+        "value": "#828f9b",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G600": {
+        "value": "#64707d",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G700": {
+        "value": "#40474f",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G800": {
+        "value": "#2d3339",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "G900": {
+        "value": "#2b2829",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      },
+      "Balck": {
+        "value": "#090a0b",
+        "type": "color",
+        "parent": "Color/Value",
+        "description": ""
+      }
+    }
+  },
+  "Breakpoint/mobile": {
+    "breakpoint": {
+      "value": "375px",
+      "type": "dimension",
+      "parent": "Breakpoint/mobile",
+      "description": "",
+      "oldValue": "23.4375rem"
+    }
+  },
+  "Breakpoint/tablet": {
+    "breakpoint": {
+      "value": "1024px",
+      "type": "dimension",
+      "parent": "Breakpoint/tablet",
+      "description": "",
+      "oldValue": "64rem"
+    }
+  },
+  "Breakpoint/desktop": {
+    "breakpoint": {
+      "value": "1440px",
+      "type": "dimension",
+      "parent": "Breakpoint/desktop",
+      "description": "",
+      "oldValue": "90rem"
+    }
+  },
+  "$themes": [],
+  "$metadata": {
+    "tokenSetOrder": [
+      "Design System/light",
+      "Color/Value",
+      "Breakpoint/mobile",
+      "Breakpoint/tablet",
+      "Breakpoint/desktop"
+    ]
+  }
+}

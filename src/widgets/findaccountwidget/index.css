@@ -1,0 +1,11 @@
+.custom-tabs .ant-tabs-nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.custom-tabs .ant-tabs-tab {
+    width: 50%;
+    justify-content: center;
+}

@@ -1,0 +1,4 @@
+.searchInput::placeholder {
+    color: var(--Neutrals-Neutrals500);
+    font-size: 14px;
+}

@@ -1,0 +1,30 @@
+.nav-main-button-has-child{
+    display: flex;
+    align-items: flex-end;
+    gap: var(--Spacingsm);
+    user-select:none;
+    max-width: 80px;
+    padding: var(--Spacingm) var(--Spacingbase);
+    transition: padding 0.3s ease, max-width 0.3s ease;
+
+}
+.nav-main-button > svg{
+    min-width: 24px;
+}
+.nav-main-button-has-child.clicked{
+    color: var(--Primary-Primary600);
+}
+.nav-has-child-text{
+    color: var(--Neutrals-Neutrals500);
+    white-space: nowrap;
+}
+.nav-main-button-has-child.collapsed .nav-has-child-text{
+    font-size: 0;
+}
+.nav-main-button-has-child.collapsed{
+    padding: 0;
+    max-width: 0;
+}
+
+.nav-child-container {
+}

@@ -1,0 +1,23 @@
+.searchInput::placeholder{
+    color: var(--Neutrals-Neutrals500);
+    font-size: 14px;
+}
+th.tableColumnFill {
+  width: 27%;
+  background-color: var(--Base-Base-White) !important;
+}
+th.tableColumnFixed::before,
+th.tableColumnFill::before{
+  background-color: transparent !important;
+}
+th.tableColumnFixed {
+  width: 19%;
+  max-width: 200px;
+  background-color: var(--Base-Base-White) !important;
+}
+.linkCenterListTable thead {
+  background-color: var(--Base-Base-White) !important;
+}
+.linkCenterListTable tbody {
+  background-color: var(--Base-Base-White) !important;
+}

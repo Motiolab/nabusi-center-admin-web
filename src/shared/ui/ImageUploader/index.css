@@ -1,0 +1,23 @@
+/* 업로드 카드의 크기를 줄입니다 */
+.small-upload-card .ant-upload-list-item {
+    width: 56px !important; /* 원하는 너비로 조정 */
+    height: 56px !important; /* 원하는 높이로 조정 */
+  }
+  
+  /* 이미지 업로드 아이콘 크기 조정 */
+  .small-upload-card .ant-upload-list-item .ant-upload-list-item-thumbnail img {
+    width: 100%; /* 썸네일 너비 */
+    height: 100%; /* 썸네일 높이 */
+    object-fit: cover; /* 이미지 비율 유지 */
+  }
+  
+  /* 업로드 버튼 크기 조정 */
+  .small-upload-card .ant-upload-select {
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .small-upload-card .ant-upload-list-item-container{
+    width: 56px !important;
+    height: 56px !important;
+  }

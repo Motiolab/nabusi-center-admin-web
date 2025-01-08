@@ -1,0 +1,25 @@
+.formItemCustomContainer label{
+    height: 44px !important;
+}
+.overFlowScroll > div{
+    overflow: scroll;
+}
+.ailineItemCenter .ant-form-item .ant-form-item-control{
+    margin: 10px;
+}
+.customInputHeight > div > input{
+    height: 44px;
+}
+.customInputHeightAndCenter > div > div > input{
+    height: 44px;
+    width: 160px !important;
+    text-align: center !important;
+    margin-left: -33px !important;
+}
+.formCustomInputFLexAndCenter > div > div > div > div{
+    display: flex;
+    align-items: center;
+}
+.sliderDotDisplayNone > div > span{
+    display: none;
+}

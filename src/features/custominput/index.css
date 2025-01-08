@@ -1,0 +1,20 @@
+.target-title{
+    font-weight: 700;
+}
+/* .target-content{
+    
+} */
+.preview-title{
+    color: var(--Base-Base-Black);
+}
+.preview-content{
+    color: var(--Neutrals-Neutrals700);
+}
+.ant-modal .ant-modal-title{
+    font-size: 18px !important;
+    color: var(--Base-Base-Black) !important;
+    line-height: -40px;
+}
+.ant-modal .ant-modal-close{
+ margin-top: 10px ;
+}
