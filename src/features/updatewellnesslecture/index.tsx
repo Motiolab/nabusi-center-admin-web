@@ -15,14 +15,6 @@ import MultiSelectWellnessTicketManagement from "@/entities/wellnessticketmanage
 import ImageUploaderList from "@/shared/ui/ImageUploaderList";
 import { useMutationUpdateWellnessLecture, useQueryGetWellnessLectureDetailById } from "@/entities/wellnesslecture/model";
 
-interface TimeRange {
-    dayOfWeek: IDayOfWeek;
-    startTime: Dayjs | null;
-    endTime: Dayjs | null;
-}
-
-type IDayOfWeek = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '';
-
 const { TextArea } = Input;
 
 interface IProps {

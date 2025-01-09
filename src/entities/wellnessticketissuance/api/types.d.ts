@@ -17,3 +17,16 @@ interface ICreateWellnessTicketIssuanceAdminRequestV1 {
     payerMemberId: number
     note: string
 }
+
+interface IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1 {
+    id: number
+    wellnessTicketIssuanceName: string
+    memberName: string
+    mobile: string
+    remainingCnt: number
+    remainingDate: number
+    totalUsableCnt: number
+    startDate: string
+    expireDate: string
+    isDelete: boolean
+}

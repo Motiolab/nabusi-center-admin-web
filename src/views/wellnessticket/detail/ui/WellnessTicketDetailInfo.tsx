@@ -7,7 +7,7 @@ interface IProps {
 
 const WellnessTicketDetailInfo = ({ wellnessTicketDetail }: IProps) => {
     return <>
-        <div style={{ padding: 24, backgroundColor: 'white' }}>
+        <div style={{ padding: 24 }}>
             <Flex>
                 <div style={{ flex: 1 }}>
                     <Flex gap={16} style={{ alignItems: 'center' }}>

@@ -5,6 +5,7 @@ import styles from './styles.module.css'
 import { useMutationCreateWellnessTicketExtension, useQueryGetWellnessTicketExtensionListByWellnessTicketId } from "@/entities/wellnessticketextension/model";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { useQueryClient } from "@tanstack/react-query";
 
 const { TextArea } = Input;
 
@@ -14,6 +15,7 @@ interface IProps {
 }
 
 const ExtensionTicket = ({ wellnessTicketId, wellnessTicketName }: IProps) => {
+    const queryClient = useQueryClient();
     const selectedCenterId = useSelector((state: RootState) => state.selectedCenterId)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [targetDate, setTargetDate] = useState<Dayjs | undefined>(undefined)
@@ -27,6 +29,8 @@ const ExtensionTicket = ({ wellnessTicketId, wellnessTicketName }: IProps) => {
         if (res.data) {
             message.success('수강권 일괄 연장 성공하였습니다.');
             setIsModalOpen(false);
+            queryClient.invalidateQueries({ queryKey: ['getAllMemberListByCenterId', selectedCenterId] })
+            queryClient.invalidateQueries({ queryKey: ['getWellnessTicketIssuanceListByWellnessTicketId', selectedCenterId, wellnessTicketId] })
         }
     });
 

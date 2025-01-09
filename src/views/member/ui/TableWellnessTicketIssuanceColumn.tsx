@@ -1,13 +1,12 @@
 import { TableColumnsType } from "antd"
 import styles from '../styles.module.css'
-import { Link } from "react-router-dom"
 import dayjs from 'dayjs'
 import { ticketValueEnToKr } from "@/entities/ticket/model"
 
 const TableWellnessTicketIssuanceColumn: TableColumnsType<any> = [
     { title: "no.", dataIndex: "", className: styles.tableColumnStyle + " body-content-standard", render: (_: number, __: any, index: number) => index + 1 },
     {
-        title: "구분", dataIndex: "type", className: styles.tableColumnStyle + " body-content-accent", render: (value: string, record: IWellnessTicketIssuance) =>
+        title: "구분", dataIndex: "type", className: styles.tableColumnStyle + " body-content-standard", render: (value: string, record: IWellnessTicketIssuance) =>
             <>{ticketValueEnToKr(value)}</>
     },
     {
