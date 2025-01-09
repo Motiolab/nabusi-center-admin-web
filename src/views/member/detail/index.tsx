@@ -77,7 +77,7 @@ const MemberDetail = () => {
             <div>
                 <Flex align="center" justify="space-between" style={{ padding: 24 }}>
                     <div className="body-highlight-accent">수강권</div>
-                    <IssueWellnessTicket />
+                    {numericId && <IssueWellnessTicket memberId={numericId} />}
                 </Flex>
                 <Divider style={{ margin: 0 }} />
                 <div style={{ padding: 24 }}>

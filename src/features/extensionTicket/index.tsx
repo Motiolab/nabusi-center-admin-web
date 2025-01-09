@@ -99,27 +99,18 @@ const ExtensionTicket = ({ wellnessTicketId, wellnessTicketName }: IProps) => {
             {wellnessTicketExtensionList && <Table
                 style={{ marginTop: 20 }}
                 columns={[
-                    {
-                        title: "관리자", dataIndex: "registerName", className: "body-content-standard", render: (value: string) => value
-                    },
-                    {
-                        title: "연장 기준일", dataIndex: "targetDate", className: "body-content-standard", render: (value: string) => dayjs(value).format('YYYY-MM-DD')
-                    },
-                    {
-                        title: "연장일", dataIndex: "extendDate", className: "body-content-standard", render: (value: string) => value + '일'
-                    },
-                    {
-                        title: "연장 사유", dataIndex: "reason", className: "body-content-standard", width: 175
-                    },
-                    {
-                        title: "연장 일시", dataIndex: "createDateTime", className: "body-content-standard", render: (value: string) => dayjs(value).format('YYYY-MM-DD')
-                    },
+                    { title: "관리자", dataIndex: "registerName", className: "body-content-standard", render: (value: string) => value },
+                    { title: "연장 기준일", dataIndex: "targetDate", className: "body-content-standard", render: (value: string) => dayjs(value).format('YYYY-MM-DD') },
+                    { title: "연장일", dataIndex: "extendDate", className: "body-content-standard", render: (value: string) => value + '일' },
+                    { title: "연장 사유", dataIndex: "reason", className: "body-content-standard", width: 175 },
+                    { title: "연장 일시", dataIndex: "createDateTime", className: "body-content-standard", render: (value: string) => dayjs(value).format('YYYY-MM-DD') },
                 ]}
                 dataSource={wellnessTicketExtensionList.map((e, idx) => ({ ...e, key: idx }))}
                 locale={{ emptyText }}
                 pagination={{
                     position: ["bottomCenter"],
-                    className: styles.tablePagenation
+                    className: styles.tablePagenation,
+                    pageSize: 5
                 }}
             />
             }

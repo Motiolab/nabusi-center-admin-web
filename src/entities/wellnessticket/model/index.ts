@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createWellnessTicket, deleteWellnessTicketById, getWellnessTicketDetailById, getWellnessTicketList, restoreWellnessTicketById, updateWellnessTicket } from "../api";
-import { useNavigate } from "react-router-dom";
 
 export const useQueryGetWellnessTicketList = (centerId: number) => {
     const query = useQuery({
@@ -12,11 +11,10 @@ export const useQueryGetWellnessTicketList = (centerId: number) => {
     return query;
 };
 
-export const useMutationCreateWellnessTicket = () => {
-    const navigate = useNavigate();
+export const useMutationCreateWellnessTicket = (callback: Function) => {
     const mutation = useMutation({
         mutationFn: createWellnessTicket,
-        onSuccess: (res) => { res.data && navigate(-1) }
+        onSuccess: (res) => { res.data && callback(res) }
     })
     return mutation;
 }
@@ -54,7 +52,6 @@ export const useMutationRestoreWellnessTicketById = (callback: Function) => {
 }
 
 export const useMutationUpdateWellnessTicket = (callback: Function) => {
-    const navigate = useNavigate();
     const mutation = useMutation({
         mutationFn: updateWellnessTicket,
         onSuccess: (res) => res.data && callback(res),

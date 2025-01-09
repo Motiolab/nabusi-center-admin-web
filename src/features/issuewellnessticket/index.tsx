@@ -6,7 +6,11 @@ import { useQueryGetWellnessTicketList } from "@/entities/wellnessticket/model";
 import FirstStep from "./ui/FirstStep";
 import SecondStep from "./ui/SecondStep";
 
-const IssueWellnessTicket = () => {
+interface IProps {
+    memberId: number
+}
+
+const IssueWellnessTicket = ({ memberId }: IProps) => {
     const selectedCenterId = useSelector((state: RootState) => state.selectedCenterId)
     const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
     const [selectedTicket, setSelectedTicket] = useState<IGetWellnessTicketAdminResponseV1>();
@@ -36,7 +40,10 @@ const IssueWellnessTicket = () => {
             </> : step === 2 ? <>
                 {selectedTicket && <SecondStep
                     wellnessTicket={selectedTicket}
-                    setStep={setStep} discountValue={discountValue}
+                    setStep={setStep}
+                    discountValue={discountValue}
+                    memberId={memberId}
+                    setIsOpenModal={setIsOpenModal}
                 />}
             </> : <></>}
         </Modal>

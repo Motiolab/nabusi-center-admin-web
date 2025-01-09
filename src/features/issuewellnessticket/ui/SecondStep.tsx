@@ -1,19 +1,27 @@
-import { Button, DatePicker, Divider, Flex, Input, Radio, RadioChangeEvent } from "antd"
+import { Button, DatePicker, Divider, Flex, Input, Radio, RadioChangeEvent, message } from "antd"
 import { ChangeEvent, useState } from "react";
 import { ticketValueEnToKr } from "@/entities/ticket/model";
 import dayjs, { Dayjs } from "dayjs";
+import { useMutationCreateWellnessTicketIssuance } from "@/entities/wellnessticketissuance/model";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface IProps {
     wellnessTicket: IGetWellnessTicketAdminResponseV1
     setStep: (step: number) => void
     discountValue: number
+    memberId: number
+    setIsOpenModal: Function
 }
 
 const { TextArea } = Input;
 
-const SecondStep = ({ wellnessTicket, setStep, discountValue }: IProps) => {
-    const [startDateTime, setStartDateTime] = useState<Dayjs>(dayjs());
-    const [endDateTime, setEndDateTime] = useState<Dayjs>(dayjs().add(wellnessTicket.usableDate, "day"));
+const SecondStep = ({ wellnessTicket, setStep, discountValue, memberId, setIsOpenModal }: IProps) => {
+    const queryClient = useQueryClient();
+    const selectedCenterId = useSelector((state: RootState) => state.selectedCenterId)
+    const [startDateTime, setStartDateTime] = useState<Dayjs | undefined>(dayjs());
+    const [endDateTime, setEndDateTime] = useState<Dayjs | undefined>(dayjs().add(wellnessTicket.usableDate, "day"));
     const [totalUsableCnt, setTotalUsableCnt] = useState<number>(wellnessTicket.totalUsableCnt);
     const [limitType, setLimitType] = useState<string>(wellnessTicket.limitType)
     const [limitCnt, setLimitCnt] = useState<number>(wellnessTicket.limitCnt);
@@ -25,13 +33,49 @@ const SecondStep = ({ wellnessTicket, setStep, discountValue }: IProps) => {
     const [isTotalCardPay, setIsTotalCardPay] = useState<boolean>(false);
     const [note, setNote] = useState<string>('');
 
+    const createMutation = useMutationCreateWellnessTicketIssuance((res: any) => {
+        if (res.data) {
+            message.success('수강권 발급이 완료되었습니다.')
+            setStep(1)
+            setIsOpenModal(false)
+            queryClient.invalidateQueries({ queryKey: ['getMemberDetailById', selectedCenterId, memberId] })
+        }
+    })
     const calculateFinalPrice = (price: number, discountValue: number): number => {
         if (!price || discountValue < 0) return 0;
         return discountValue === 0 ? price : price - (price * (discountValue / 100));
     };
 
     const createWellnessTicketIssuance = () => {
+        if (!startDateTime || !startDateTime.isValid()) return message.error('이용기간 시작일을 입력해주세요.')
+        if (!endDateTime || !endDateTime.isValid()) return message.error('이용기간 종료일을 입력해주세요.')
 
+        if (Number(cardPay) + Number(cashPay) === 0) {
+            if (!window.confirm("결제 금액 없이 수강권을 발급하시겠습니까?")) {
+                return;
+            }
+        }
+
+        const request: ICreateWellnessTicketIssuanceAdminRequestV1 = {
+            centerId: selectedCenterId,
+            startDate: startDateTime.format("YYYY-MM-DDTHH:mm:00Z"),
+            expireDate: endDateTime.format("YYYY-MM-DDTHH:mm:00Z"),
+            limitType: limitType,
+            limitCnt: limitCnt,
+            totalUsableCnt: totalUsableCnt,
+            memberId: memberId,
+            wellnessTicketId: wellnessTicket.id,
+            paymentMethod: "ON_SITE",
+            discountRate: discountValue,
+            totalPayValue: calculateFinalPrice(wellnessTicket.price, discountValue),
+            unpaidValue: calculateFinalPrice(wellnessTicket.price, discountValue) - Number(cardPay.replaceAll(',', '')) - Number(cashPay.replaceAll(',', '')),
+            cardInstallment: Number(cardInstallment),
+            cardPayValue: Number(cardPay),
+            cashPayValue: Number(cashPay),
+            payerMemberId: memberId,
+            note: note
+        }
+        createMutation.mutate(request)
     }
 
     return (
@@ -41,9 +85,9 @@ const SecondStep = ({ wellnessTicket, setStep, discountValue }: IProps) => {
                     <div className="body-content-bold" style={{ color: 'var(--Neutrals-Neutrals500)' }}>수강권 설정</div>
                     <Flex align="center" style={{ marginTop: 16 }}>
                         <div style={{ width: 124 }}>이용 기간</div>
-                        <DatePicker placeholder="시작일" value={startDateTime} onChange={(e) => setStartDateTime(e.startOf('date'))} size="large" />
+                        <DatePicker placeholder="시작일" value={startDateTime} onChange={(e) => setStartDateTime(e ? e.startOf('date') : undefined)} size="large" />
                         <div style={{ margin: 8 }}>-</div>
-                        <DatePicker placeholder="종료일" value={endDateTime} onChange={(e) => setEndDateTime(e.startOf('date'))} size="large" />
+                        <DatePicker placeholder="종료일" value={endDateTime} onChange={(e) => setEndDateTime(e ? e.startOf('date') : undefined)} size="large" />
                         <div className="body-content-standard" style={{ margin: 8 }}>({endDateTime?.diff(startDateTime, "day")}일)</div>
                     </Flex>
                     <Flex align="center" style={{ marginTop: 16 }}>
@@ -190,7 +234,7 @@ const SecondStep = ({ wellnessTicket, setStep, discountValue }: IProps) => {
                             {wellnessTicket ? <><div>
                                 <div style={{ backgroundColor: 'white', padding: 24, border: '1px solid var(--Neutrals-Neutrals200)', borderRadius: 8 }}>
                                     <div className="body-hero-bold">{wellnessTicket.name}</div>
-                                    <div className="body-content-standard" style={{ color: 'var(--Neutrals-Neutrals700)' }}>{startDateTime.format('YYYY-MM-DD')} - {endDateTime.format('YYYY-MM-DD')} ({endDateTime.diff(startDateTime, "day")}일)</div>
+                                    {(startDateTime && endDateTime) && <div className="body-content-standard" style={{ color: 'var(--Neutrals-Neutrals700)' }}>{startDateTime.format('YYYY-MM-DD')} - {endDateTime.format('YYYY-MM-DD')} ({endDateTime.diff(startDateTime, "day")}일)</div>}
                                     <div className="body-content-standard" style={{ color: "var(--Neutrals-Neutrals700)", marginTop: 24 }}>{ticketValueEnToKr(wellnessTicket.type)}</div>
                                 </div>
                                 <div style={{ marginTop: 20 }}>

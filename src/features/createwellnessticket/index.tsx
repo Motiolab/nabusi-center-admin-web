@@ -8,8 +8,10 @@ import { useMutationCreateWellnessTicket } from "@/entities/wellnessticket/model
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const CreateWellnessTicket = () => {
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
     const selectedCenterId = useSelector((state: RootState) => state.selectedCenterId)
     const [name, setName] = useState<string>('');
@@ -24,7 +26,10 @@ const CreateWellnessTicket = () => {
     const [limitCnt, setLimitCnt] = useState<number>(0);
     const [backgroundColor, setBackgroundColor] = useState<string>('#00000095');
     const [wellnessClassIdList, setWellnessClassIdList] = useState<number[] | undefined>(undefined);
-    const createMutation = useMutationCreateWellnessTicket();
+    const createMutation = useMutationCreateWellnessTicket((res: any) => {
+        if (res.data) navigate(-1);
+        queryClient.invalidateQueries({ queryKey: ['getWellnessTicketList', selectedCenterId] })
+    });
 
     const calculateFinalPrice = (price: number, discountValue: number): number => {
         if (!price || discountValue < 0) return 0;
