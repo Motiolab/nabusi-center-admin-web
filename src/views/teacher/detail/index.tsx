@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import UpdateIntroduction from "./ui/UpdateIntroduction";
 import UpdateCareer from "./ui/UpdateCareer";
+import { useQueryGetTeacherDetailById } from "@/entities/teacher/model";
+import dayjs from 'dayjs'
 
 const TeacherDetail = () => {
     const { id } = useParams();
@@ -16,6 +18,7 @@ const TeacherDetail = () => {
     const [selectTab, setSelectTab] = useState<number>(0);
     const [isUpdateIntroduction, setIsUpdateIntroduction] = useState<boolean>(false)
     const [isUpdateCareer, setIsUpdateCareer] = useState<boolean>(false)
+    const { data: teacherDetail } = useQueryGetTeacherDetailById(selectedCenterId, numericId as number);
 
     return (
         <div>
@@ -33,39 +36,37 @@ const TeacherDetail = () => {
                             <div className="body-highlight-accent">기본정보</div>
                         </div>
                         <Divider style={{ margin: 0 }} />
-                        <div style={{ padding: 24 }}>
-                            <Flex gap={80}>
-                                <ImageUploader />
-                                <div>
-                                    <Flex gap={12}>
-                                        <div className="body-content-bold" style={{ width: 100 }}>이름</div>
-                                        <div className="body-content-standard">홍길동</div>
-                                    </Flex>
-                                    <Flex gap={12} style={{ marginTop: 16 }}>
-                                        <div className="body-content-bold" style={{ width: 100 }}>센터 등록일</div>
-                                        <div className="body-content-standard">2024.03.25</div>
-                                    </Flex>
-                                    <Flex gap={12} style={{ marginTop: 16 }}>
-                                        <div className="body-content-bold" style={{ width: 100 }}>휴대폰 번호</div>
-                                        <div className="body-content-standard">+82 010-1234-1234</div>
-                                    </Flex>
-                                    <Flex gap={12} style={{ marginTop: 16 }}>
-                                        <div className="body-content-bold" style={{ width: 100 }}>생년월일</div>
-                                        <div className="body-content-standard">1994.01.12 | 30세</div>
-                                    </Flex>
-                                    <Flex gap={12} style={{ marginTop: 16 }}>
-                                        <div className="body-content-bold" style={{ width: 100 }}>이메일</div>
-                                        <div className="body-content-standard">asdf@gmail.com</div>
-                                    </Flex>
-                                    <Flex gap={12} style={{ marginTop: 16 }}>
-                                        <div className="body-content-bold" style={{ width: 100 }}>역할</div>
-                                        <div className="body-content-standard">강사</div>
-                                    </Flex>
-                                </div>
-                            </Flex>
-                        </div>
+                        {teacherDetail && <>
+                            <div style={{ padding: 24 }}>
+                                <Flex gap={80}>
+                                    <ImageUploader />
+                                    <div>
+                                        <Flex gap={12}>
+                                            <div className="body-content-bold" style={{ width: 100 }}>이름</div>
+                                            <div className="body-content-standard">{teacherDetail.name}</div>
+                                        </Flex>
+                                        <Flex gap={12} style={{ marginTop: 16 }}>
+                                            <div className="body-content-bold" style={{ width: 100 }}>센터 등록일</div>
+                                            <div className="body-content-standard">{dayjs(teacherDetail.createdDate).format('YYYY.MM.DD')}</div>
+                                        </Flex>
+                                        <Flex gap={12} style={{ marginTop: 16 }}>
+                                            <div className="body-content-bold" style={{ width: 100 }}>휴대폰 번호</div>
+                                            <div className="body-content-standard">{teacherDetail.mobile}</div>
+                                        </Flex>
+                                        <Flex gap={12} style={{ marginTop: 16 }}>
+                                            <div className="body-content-bold" style={{ width: 100 }}>이메일</div>
+                                            <div className="body-content-standard">{teacherDetail.email}</div>
+                                        </Flex>
+                                    </div>
+                                </Flex>
+                            </div>
+                        </>}
                         {isUpdateIntroduction ?
-                            <UpdateIntroduction setIsUpdateIntroduction={(value) => setIsUpdateIntroduction(value)} /> : <>
+                            <UpdateIntroduction
+                                setIsUpdateIntroduction={(value) => setIsUpdateIntroduction(value)}
+                                initNickName={teacherDetail?.nickName as string}
+                                initIntroduction={teacherDetail?.introduce as string}
+                            /> : <>
                                 <div style={{ padding: 24 }}>
                                     <Flex justify="space-between" align="center">
                                         <div className="body-highlight-accent">자기소개 <span className="body-caption-standard" style={{ color: 'var(--Neutrals-Neutrals500)', marginLeft: 12 }}>회원에게 보이는 내용입니다.</span></div>
@@ -76,14 +77,10 @@ const TeacherDetail = () => {
                                 <div style={{ padding: 24 }}>
                                     <Flex align="center">
                                         <div className="body-content-bold" style={{ color: 'var(--Neutrals-Neutrals700)', width: 100 }}>닉네임</div>
-                                        <div className="body-content-standard" style={{ color: 'var(--Neutrals-Neutrals700)' }}>줄리아</div>
+                                        <div className="body-content-standard" style={{ color: 'var(--Neutrals-Neutrals700)' }}>{teacherDetail?.nickName}</div>
                                     </Flex>
                                     <div className="body-content-standard" style={{ marginTop: 12 }}>
-                                        요가란 매트 위에서 도전과 용기를 통해 자신을 단련시키는 것입니다.<br />
-                                        <br />
-
-                                        수업에서는 하나의 동작을 달성하기 위한 관절과 근육을 워밍업 하여 코어를 강화 시킨 후,
-                                        몸의 유연성을 향상시켜  피크 포즈에 도전합니다.
+                                        {teacherDetail?.introduce}
                                     </div>
                                 </div>
                             </>}
@@ -98,10 +95,7 @@ const TeacherDetail = () => {
                                 <Divider style={{ margin: 0 }} />
                                 <div style={{ padding: 24 }}>
                                     <div className="body-content-standard" style={{ marginTop: 12 }}>
-                                        - 유튜브 채널 운영<br />
-                                        - 삼성전자 요가 교육자<br />
-                                        - 더플로우요가 지도자과정 시니어<br />
-                                        - 잇존어패럴 엠버서더
+                                        {teacherDetail?.career}
                                     </div>
                                 </div>
                             </>}

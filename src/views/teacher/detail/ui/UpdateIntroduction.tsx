@@ -3,14 +3,16 @@ import { ChangeEvent, useState } from "react"
 
 interface IProps {
     setIsUpdateIntroduction: (isUpdateIntroduction: boolean) => void
+    initNickName: string
+    initIntroduction: string
 }
 
 const { TextArea } = Input;
 
-const UpdateIntroduction = ({ setIsUpdateIntroduction }: IProps) => {
+const UpdateIntroduction = ({ setIsUpdateIntroduction, initNickName, initIntroduction }: IProps) => {
     const [isUseNickName, setIsUseNickName] = useState<boolean>(false)
-    const [nickName, setNickName] = useState<string>('줄리아')
-    const [introduction, setIntroduction] = useState<string>('요가란 매트 위에서 도전과 용기를 통해 자신을 단련시키는 것입니다.\n\n 수업에서는 하나의 동작을 달성하기 위한 관절과 근육을 워밍업 하여 코어를 강화 시킨 후,\n 몸의 유연성을 향상시켜  피크 포즈에 도전합니다.')
+    const [nickName, setNickName] = useState<string>(initNickName)
+    const [introduction, setIntroduction] = useState<string>(initIntroduction)
 
     return <>
         <div style={{ padding: 24 }}>

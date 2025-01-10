@@ -2,7 +2,8 @@ import { Select } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { teacherNameListByCenterId } from "..";
+import { teacherNameListByCenterId } from "../api";
+
 
 interface IProps {
     value: number | undefined;

@@ -5,8 +5,8 @@ import { Button, Flex, Input, Table, TableColumnsType, TableProps, message } fro
 import { useSelector } from "react-redux";
 import { ReactComponent as Search } from '@/assets/icon/Search.svg';
 import { ChangeEvent, useState } from "react";
-import { addTeacherByCenterId } from "@/entities/teacher";
 import { AxiosError } from "axios";
+import { addTeacherByCenterId } from "@/entities/teacher/api";
 
 interface DataType {
     key: React.Key;
