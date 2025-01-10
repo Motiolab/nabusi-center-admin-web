@@ -95,7 +95,7 @@ const MemberDetail = () => {
             </div>
 
             <div>
-                <div className="body-highlight-accent" style={{ padding: 24 }}>메모</div>
+                <div className="body-highlight-accent" style={{ padding: '0 24px 24px 24px' }}>메모</div>
                 <Divider style={{ margin: 0 }} />
                 <div style={{ padding: 24 }}>
                     <Flex>

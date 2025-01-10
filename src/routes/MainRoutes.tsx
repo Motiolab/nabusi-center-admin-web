@@ -18,6 +18,7 @@ import WellnessTicket from '@/views/wellnessticket';
 import WellnessTicketCreate from '@/views/wellnessticket/create';
 import WellnessTicketDetail from '@/views/wellnessticket/detail';
 import WellnessTicketUpdate from '@/views/wellnessticket/update';
+import WellnessTicketIssuanceUpdate from '@/views/wellnessticketissuance/update';
 import { LayoutLeft, LayoutTop } from '@/widgets';
 import { Outlet, RouteObject } from 'react-router-dom';
 
@@ -50,6 +51,7 @@ const MainRoutes: RouteObject = {
                 { path: '/member/detail/:id', element: <MemberDetail /> },
                 { path: '/teacher', element: <Teacher /> },
                 { path: '/teacher/detail/:id', element: <TeacherDetail /> },
+                { path: '/wellness-ticket-issuance/update/:id', element: <WellnessTicketIssuanceUpdate /> }
 
         ],
 };

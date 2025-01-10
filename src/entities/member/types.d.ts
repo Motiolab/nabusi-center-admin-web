@@ -61,20 +61,6 @@ interface IGetAllMemberListByCenterIdAdminResponseV1 {
     createdDate: string
 }
 
-interface IWellnessTicketIssuance {
-    id: number
-    name: string
-    type: string
-    backgroundColor: string
-    textColor: string
-    limitType: string
-    limitCnt: number
-    isDelete: boolean
-    remainingCnt: number
-    remainingDate: number
-    totalUsableCnt: number
-    startDate: string
-}
 
 interface IMemberMemo {
     id: number
@@ -109,6 +95,7 @@ interface IWellnessTicketIssuance {
     totalUsableCnt: number
     startDate: string
     expireDate: string
+    unpaidValue: number
 }
 
 interface IMemberMemo {

@@ -3,7 +3,7 @@ import { RootState } from "@/store";
 import { Button, Divider, Flex, Input, Table, Tag } from "antd";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import WellnessTicketDetailInfo from "./ui/WellnessTicketDetailInfo";
 import { ReactComponent as Search } from '@/assets/icon/Search.svg'
 import DeleteWellnessTicket from "@/features/deletewellnessticket";
@@ -11,6 +11,7 @@ import RestoreWellnessTicket from "@/features/restorewellnessticket ";
 import ExtensionTicket from "@/features/extensionTicket";
 import { useQueryGetWellnessTicketIssuanceListByWellnessTicketId } from "@/entities/wellnessticketissuance/model";
 import dayjs from 'dayjs'
+import { ticketValueEnToKr } from "@/entities/ticket/model";
 
 const WellnessTicketDetail = () => {
     const { id } = useParams();
@@ -63,26 +64,36 @@ const WellnessTicketDetail = () => {
                                 { title: "이름", dataIndex: "memberName", className: "body-content-standard", render: (value: string) => value },
                                 { title: "전화번호", dataIndex: "mobile", className: "body-content-standard", render: (value: string) => value },
                                 {
-                                    title: "수강권 정보", dataIndex: "remainingCnt", className: "body-content-standard", render: (value: string, record: IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1) => {
-                                        return <Flex gap={8}>
-                                            <div className="body-caption-standardp" style={{ padding: '2px 8px', backgroundColor: 'var(--Neutrals-Neutrals100)', borderRadius: 4 }}>{record.wellnessTicketIssuanceName}</div>
+                                    title: "수강권", dataIndex: "wellnessTicketIssuanceName", className: "body-content-standard", render: (value: string, record: IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1) => {
+                                        return <Link to={`/wellness-ticket-issuance/update/${record.id}`}><div className="body-content-accent">{value}</div></Link>
+                                    }
+                                },
+                                {
+                                    title: "구분", dataIndex: "type", className: "body-content-standard", render: (value: string, record: IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1) =>
+                                        <>{ticketValueEnToKr(value)}</>
+                                },
+                                {
+                                    title: "잔여", dataIndex: "remainingDate", className: "body-content-standard", render: (value: string, record: IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1) => <>
+                                        <Flex gap={8}>
                                             <div className="body-caption-standardp" style={{ padding: '2px 8px', backgroundColor: 'var(--Neutrals-Neutrals100)', borderRadius: 4 }}>{record.remainingDate}일 남음</div>
                                             <div className="body-caption-standardp" style={{ padding: '2px 8px', backgroundColor: 'var(--Neutrals-Neutrals100)', borderRadius: 4 }}>{record.remainingCnt}회 / {record.totalUsableCnt}회</div>
+                                            {record.limitType !== 'NONE' && <div className="body-caption-standardp" style={{ padding: '2px 8px', color: '#e57373', backgroundColor: '#fff2f0', borderRadius: 4 }}>{ticketValueEnToKr(record.limitType)} {record.limitCnt}회 제한</div>}
                                         </Flex>
-                                    }
+                                    </>
                                 },
                                 {
-                                    title: "사용 기간", dataIndex: "startDate", className: "body-content-standard", render: (value: string, record: IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1) => {
-                                        return <>{dayjs(record.startDate).format('YYYY.MM.DD')} - {dayjs(record.expireDate).format('YYYY.MM.DD')}</>
-                                    }
-                                },
-                                {
+                                    title: "결제일", dataIndex: "createdDate", className: "body-content-standard", render: (value: string) => <>
+                                        {dayjs(value).format("YYYY-MM-DD")}
+                                    </>
+                                }, {
                                     title: "상태", dataIndex: "isDelete", className: "body-content-standard", render: (value: boolean, record: IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1) => {
-                                        return <>{!value ?
+                                        return <Flex>{!value ?
                                             <Tag bordered={false} color="processing" className="body-caption-accent">이용중</Tag> :
                                             record.remainingCnt > 0 ?
-                                                <Tag bordered={false} color="red" className="body-caption-accent">만료</Tag> :
-                                                <Tag bordered={false} color="red" className="body-caption-accent">사용 완료</Tag>}</>
+                                                <Tag bordered={false} color="red" className="body-caption-accent">사용 불가</Tag> :
+                                                <Tag bordered={false} color="red" className="body-caption-accent">사용 완료</Tag>}
+                                            {record.unpaidValue > 0 && <Tag bordered={false} color="error" className="body-caption-accent">미수금</Tag>}
+                                        </Flex>
                                     }
                                 },
                             ]}

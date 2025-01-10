@@ -29,4 +29,42 @@ interface IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1 {
     startDate: string
     expireDate: string
     isDelete: boolean
+    type: string
+    unpaidValue: number
+    limitType: string
+    limitCnt: number
+}
+
+interface IGetWellnessTicketIssuanceDetailByIdAdminResponseV1 {
+    id: number
+    memberId: number
+    memberName: string
+    mobile: string
+    ticketName: string
+    startDate: string
+    expireDate: string
+    type: string
+    backgroundColor: string
+    remainingCnt: number
+    totalUsableCnt: number
+    limitType: string
+    limitCnt: number
+    unpaidValue: number
+    isDelete: boolean
+    wellnessTicketId: number
+}
+
+interface IUpdateWellnessTicketIssuanceAdminRequestV1 {
+    id: number
+    centerId: number
+    name: string
+    backgroundColor: string
+    textColor: string
+    type: string
+    startDate: string
+    expireDate: string
+    remainingCnt: number
+    limitType: string
+    limitCnt: number
+    isDelete: boolean
 }

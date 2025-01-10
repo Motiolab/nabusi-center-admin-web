@@ -7,3 +7,11 @@ export const createWellnessTicketIssuance = (createWellnessTicketExtensionAdminR
 export const getWellnessTicketIssuanceListByWellnessTicketId = (centerId: number, wellnessTicketId: number) => {
     return api.get<IGetWellnessTicketIssuanceListByWellnessTicketIdAdminResponseV1[]>(`/v1/admin/wellness-ticket-issuance/list/wellness-ticket-id/${centerId}?wellnessTicketId=${wellnessTicketId}`);
 }
+
+export const getWellnessTicketIssuanceUpdateDetailById = (centerId: number, id: number) => {
+    return api.get<IGetWellnessTicketIssuanceDetailByIdAdminResponseV1>(`/v1/admin/wellness-ticket-issuance/update/detail/${centerId}?id=${id}`);
+}
+
+export const updateWellnessTicketIssuance = (updateWellnessTicketIssuanceAdminRequestV1: IUpdateWellnessTicketIssuanceAdminRequestV1) => {
+    return api.put<boolean>(`/v1/admin/wellness-ticket-issuance/update/${updateWellnessTicketIssuanceAdminRequestV1.centerId}`, updateWellnessTicketIssuanceAdminRequestV1);
+}
