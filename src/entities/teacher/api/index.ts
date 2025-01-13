@@ -16,3 +16,18 @@ export const getTeacherDetailById = (centerId: number, id: number) => {
     return api.get<IGetTeacherDetailById>(`/v1/admin/teacher/detail/${centerId}?id=${id}`);
 }
 
+export const updateTeacherIntroduceAndNickNameById = (updateTeacherIntroduceAndNickNameByIdAdminRequestV1: IUpdateTeacherIntroduceAndNickNameByIdAdminRequestV1) => {
+    return api.patch<boolean>(`/v1/admin/teacher/update/introduce/${updateTeacherIntroduceAndNickNameByIdAdminRequestV1.centerId}`, updateTeacherIntroduceAndNickNameByIdAdminRequestV1)
+}
+
+export const updateTeacherCareerById = (updateTeacherIntroduceAndNickNameByIdAdminRequestV1: IUpdateTeacherCareerByIdAdminRequestV1) => {
+    return api.patch<boolean>(`/v1/admin/teacher/update/career/${updateTeacherIntroduceAndNickNameByIdAdminRequestV1.centerId}`, updateTeacherIntroduceAndNickNameByIdAdminRequestV1)
+}
+
+export const deleteTeacherById = (centerId: number, id: number) => {
+    return api.delete<boolean>(`/v1/admin/teacher/delete/${centerId}?id=${id}`)
+}
+
+export const restoreTeacherById = (centerId: number, id: number) => {
+    return api.patch<boolean>(`/v1/admin/teacher/restore/${centerId}?id=${id}`)
+}

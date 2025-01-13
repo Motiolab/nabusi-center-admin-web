@@ -1,14 +1,40 @@
-import { Button, Divider, Flex, Input, Radio } from "antd"
-import { ChangeEvent, useState } from "react"
+import { useMutationUpdateTeacherCareerById } from "@/entities/teacher/model";
+import { RootState } from "@/store";
+import { useQueryClient } from "@tanstack/react-query";
+import { Button, Divider, Flex, Input, message } from "antd"
+import { useState } from "react"
+import { useSelector } from "react-redux";
 
 interface IProps {
     setIsUpdateCareer: (isUpdateCareer: boolean) => void
+    initCareer: string
+    teacherId: number
 }
 
 const { TextArea } = Input;
 
-const UpdateCareer = ({ setIsUpdateCareer }: IProps) => {
-    const [career, setCareer] = useState<string>('- 유튜브 채널 운영\n- 삼성전자 요가 교육자\n- 더플로우요가 지도자과정 시니어\n- 잇존어패럴 엠버서더')
+const UpdateCareer = ({ setIsUpdateCareer, initCareer, teacherId }: IProps) => {
+    const queryClient = useQueryClient();
+    const selectedCenterId = useSelector((state: RootState) => state.selectedCenterId)
+    const [career, setCareer] = useState<string>(initCareer)
+
+    const updateMutation = useMutationUpdateTeacherCareerById((res: any) => {
+        if (res.data) {
+            message.success("주요 이력 수정이 완료되었습니다.")
+            setIsUpdateCareer(false);
+
+            queryClient.invalidateQueries({ queryKey: ['getTeacherDetailById', selectedCenterId, teacherId] })
+        }
+    })
+
+    const onClickSaveButton = () => {
+        const request: IUpdateTeacherCareerByIdAdminRequestV1 = {
+            id: teacherId,
+            career: career,
+            centerId: selectedCenterId
+        }
+        updateMutation.mutate(request);
+    }
 
     return <>
         <div style={{ marginTop: 40, padding: 24 }}>
@@ -16,7 +42,7 @@ const UpdateCareer = ({ setIsUpdateCareer }: IProps) => {
                 <div className="body-highlight-accent">주요 이력 <span className="body-caption-standard" style={{ color: 'var(--Neutrals-Neutrals500)', marginLeft: 12 }}>회원에게 보이는 내용입니다.</span></div>
                 <div>
                     <Button onClick={() => setIsUpdateCareer(false)}>취소</Button>
-                    <Button style={{ marginLeft: 12 }} type="primary">저장</Button>
+                    <Button style={{ marginLeft: 12 }} type="primary" onClick={() => onClickSaveButton()}>저장</Button>
                 </div>
             </Flex>
         </div>

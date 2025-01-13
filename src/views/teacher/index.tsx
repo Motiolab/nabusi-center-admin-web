@@ -1,4 +1,4 @@
-import { Flex, Input, Table } from "antd"
+import { Flex, Input, Table, Tag } from "antd"
 import { Link } from "react-router-dom"
 import dayjs from 'dayjs'
 import { ChangeEvent, useState } from "react";
@@ -60,6 +60,11 @@ const Teacher = () => {
                         {
                             title: "등록일", dataIndex: "createdDate", className: "body-content-standard", render: (value: string) => <>
                                 {dayjs(value).format("YYYY-MM-DD")}
+                            </>
+                        },
+                        {
+                            title: "삭제", dataIndex: "isDelete", className: "body-content-standard", render: (value: boolean) => <>
+                                {value && <Tag bordered={false} color="red" >삭제</Tag>}
                             </>
                         }
                     ]}

@@ -66,6 +66,7 @@ const AddTeacherModal = ({ closeModal }: IProps) => {
             setSelectedMemberId(undefined);
             queryClient.invalidateQueries({ queryKey: ['getMemberListToAddTeacherByCenterId', selectedCenterId] })
             queryClient.invalidateQueries({ queryKey: ['teacherNameListByCenterId', selectedCenterId] })
+            queryClient.invalidateQueries({ queryKey: ['getTeacherListByCenterId', selectedCenterId] })
             closeModal();
         },
         onError: (error: AxiosError<string>) => message.error(error.response?.data)
