@@ -9,13 +9,20 @@ import { ReactComponent as Search } from '@/assets/icon/Search.svg';
 import { ChangeEvent, useState } from "react";
 import styles from './styles.module.css'
 import CreateReservation from "@/features/createreservation";
+import { useQueryGetReservationListByWellnessLectureId } from "@/entities/reservation/model";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import dayjs from 'dayjs'
+import ReservationStatusToKr from "@/shared/utils/format/reservationStatusToKr";
 
 interface IProps {
     wellnessLectureDetail: IGetWellnessLectureDetailAdminResponseV1
 }
 const WellnessLectureDetailInfo = ({ wellnessLectureDetail }: IProps) => {
     const navigate = useNavigate();
+    const selectedCenterId = useSelector((state: RootState) => state.selectedCenterId)
     const [searchText, setSearchText] = useState<string>('')
+    const { data: reservationList } = useQueryGetReservationListByWellnessLectureId(selectedCenterId, wellnessLectureDetail.id)
     const emptyText = <div className="body-content-standard" style={{ textAlign: "left", color: "var(--Base-Base-Black)" }}>해당 수업 예약자가 없습니다.</div>;
 
     return <>
@@ -100,60 +107,61 @@ const WellnessLectureDetailInfo = ({ wellnessLectureDetail }: IProps) => {
             </div>
         </div>
 
-        <div style={{ marginTop: 24, padding: 24, backgroundColor: 'white' }}>
-            <Flex justify="space-between">
-                <Flex align="center" gap={24}>
-                    <div className="body-content-accent">예약자 (0)</div>
-                    <CreateReservation wellnessLectureDetail={wellnessLectureDetail} />
+        {reservationList && <>
+            <div style={{ marginTop: 24, padding: 24, backgroundColor: 'white' }}>
+                <Flex justify="space-between">
+                    <Flex align="center" gap={24}>
+                        <div className="body-content-accent">예약자 ({reservationList.filter((i) => i.memberName.includes(searchText) || i.memberMobile.includes(searchText)).length})</div>
+                        <CreateReservation wellnessLectureDetail={wellnessLectureDetail} />
+                    </Flex>
+                    <Input
+                        placeholder="이름 또는 휴대번호 검색"
+                        prefix={<Search />}
+                        style={{ width: "370px", backgroundColor: "var(--Base-Base-White)" }}
+                        value={searchText}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchText(event.target.value)}
+                        size="large"
+                    />
                 </Flex>
-                <Input
-                    placeholder="이름 또는 휴대번호 검색"
-                    prefix={<Search />}
-                    style={{ width: "370px", backgroundColor: "var(--Base-Base-White)" }}
-                    value={searchText}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchText(event.target.value)}
-                    size="large"
-                />
-            </Flex>
-            <Table
-                style={{ marginTop: 20 }}
-                columns={[
-                    { title: "no.", dataIndex: "", className: styles.tableColumnStyle + " body-content-standard", render: (_: number, __: any, index: number) => index + 1 },
-                    {
-                        title: "회원명", dataIndex: "memberName", className: styles.tableColumnStyle + " body-content-standard", render: (value: string, record: IGetWellnessLectureAdminResponseV1) => {
-                            return <>
-                                <Link
-                                    to={`/member/detail/${record.id}`}
-                                    style={{ textDecorationLine: "none", color: "var(--Base-Base-Black)" }}>
-                                    {value}
-                                </Link>
-                            </>
+                <Table
+                    style={{ marginTop: 20 }}
+                    columns={[
+                        { title: "no.", dataIndex: "", className: styles.tableColumnStyle + " body-content-standard", render: (_: number, __: any, index: number) => index + 1 },
+                        {
+                            title: "회원명", dataIndex: "memberName", className: styles.tableColumnStyle + " body-content-standard", render: (value: string, record: IGetReservationListByWellnessLectureIdAdminResponseV1) => {
+                                return <>
+                                    <Link to={`/member/detail/${record.memberId}`}>
+                                        {value}
+                                    </Link >
+                                </>
+                            }
+                        },
+                        {
+                            title: "휴대폰번호", dataIndex: "memberMobile", className: styles.tableColumnStyle + " body-content-standard"
+                        },
+                        {
+                            title: "예약 정기권", dataIndex: "wellnessTicketIssuanceName", className: styles.tableColumnStyle + " body-content-standard"
+                        },
+                        {
+                            title: "상태", dataIndex: "reservationStatus", className: styles.tableColumnStyle + " body-content-standard", render: (value: string) => ReservationStatusToKr(value)
+                        },
+                        {
+                            title: "회원 메모", dataIndex: "memberMemo", className: styles.tableColumnStyle + " body-content-standard"
+                        },
+                        {
+                            title: "예약 일시", dataIndex: "reservationCreatedDate", className: styles.tableColumnStyle + " body-content-standard", render: (value: string) => dayjs(value).format('YYYY.MM.DD')
                         }
-                    },
-                    {
-                        title: "휴대폰번호", dataIndex: "mobile", className: styles.tableColumnStyle + " body-content-accent"
-                    },
-                    {
-                        title: "예약 정기권", dataIndex: "wellnessTicketIssuance", className: styles.tableColumnStyle + " body-content-accent"
-                    },
-                    {
-                        title: "상태", dataIndex: "status", className: styles.tableColumnStyle + " body-content-accent"
-                    },
-                    {
-                        title: "회원 메모", dataIndex: "memberMemo", className: styles.tableColumnStyle + " body-content-accent"
-                    },
-                    {
-                        title: "예약 일시", dataIndex: "reservationDateTime", className: styles.tableColumnStyle + " body-content-accent"
-                    }
-                ]}
-                // dataSource={wellnessLectureList.filter((i) => i.name.includes(searchText) || i.teacherName.includes(searchText)).map((e, idx) => ({ ...e, key: idx }))}
-                locale={{ emptyText }}
-                pagination={{
-                    position: ["bottomCenter"],
-                    className: styles.tablePagenation
-                }}
-            />
-        </div>
+                    ]}
+                    dataSource={reservationList.filter((i) => i.memberName.includes(searchText) || i.memberMobile.includes(searchText)).map((e, idx) => ({ ...e, key: idx }))}
+                    locale={{ emptyText }}
+                    pagination={{
+                        position: ["bottomCenter"],
+                        className: styles.tablePagenation
+                    }}
+                />
+            </div>
+        </>
+        }
 
     </>
 }

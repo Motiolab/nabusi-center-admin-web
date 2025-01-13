@@ -1,4 +1,4 @@
-import { Button, Input, Table, TableProps, message } from "antd"
+import { Button, Flex, Input, Table, TableProps, message } from "antd"
 import { ReactComponent as Search } from '@/assets/icon/Search.svg';
 import styles from './styles.module.css'
 import { ChangeEvent, useState } from "react";
@@ -51,11 +51,16 @@ const SelectMember = ({ onClickNextButton, selectedMember, setSelectedMember }: 
                     { title: "휴대폰번호", dataIndex: "mobile", className: styles.tableColumnStyle + " body-content-standard", minWidth: 190 },
                     {
                         title: "유효한 수강권", dataIndex: "wellnessTicketIssuanceList", className: styles.tableColumnStyle + " body-content-standard", render: (value: number, record: DataType) => <>
-                            {record.wellnessTicketIssuanceList.length > 0 ? record.wellnessTicketIssuanceList.map((e: IWellnessTicketIssuance) => <div>{e.name} {e.remainingCnt} / {e.totalUsableCnt}, {e.remainingDate}일 남음</div>) : <div>-</div>}
+                            {record.wellnessTicketIssuanceList.length > 0 ? record.wellnessTicketIssuanceList.map((e: IWellnessTicketIssuance, index) =>
+                                <Flex gap={8} style={{ marginTop: index > 0 ? 12 : 0 }}>
+                                    <div className="body-caption-standardp" style={{ padding: '2px 8px', backgroundColor: 'var(--Neutrals-Neutrals100)', borderRadius: 4 }}>{e.name}</div>
+                                    <div className="body-caption-standardp" style={{ padding: '2px 8px', backgroundColor: 'var(--Neutrals-Neutrals100)', borderRadius: 4 }}>{e.remainingDate}일 남음</div>
+                                    <div className="body-caption-standardp" style={{ padding: '2px 8px', backgroundColor: 'var(--Neutrals-Neutrals100)', borderRadius: 4 }}>{e.remainingCnt}회 / {e.totalUsableCnt}회</div>
+                                </Flex>) : <div>-</div>}
                         </>
                         , minWidth: 120
                     },
-                    { title: "SNS", dataIndex: "soicalName", className: styles.tableColumnStyle + " body-content-standard" },
+                    { title: "SNS", dataIndex: "socialName", className: styles.tableColumnStyle + " body-content-standard" },
                 ]}
                 dataSource={memberList?.filter((member: IGetAllMemberListByCenterIdAdminResponseV1) => searchText === '' || member.mobile.includes(searchText) || member.name.includes(searchText))
                     .map((e, idx) => ({ key: e.id, ...e }))}

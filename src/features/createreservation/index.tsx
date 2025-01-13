@@ -18,7 +18,7 @@ const CreateReservation = ({ wellnessLectureDetail }: IProps) => {
             open={isModalOpen}
             onOk={() => setIsModalOpen(false)}
             onCancel={() => setIsModalOpen(false)}
-            width={620}
+            width={720}
             footer={null}
             centered
         >
@@ -37,9 +37,7 @@ const CreateReservation = ({ wellnessLectureDetail }: IProps) => {
                         setSelectedMember(undefined)
                         setStep(1)
                     }}
-                    createReservation={() => {
-                        setIsModalOpen(false)
-                    }}
+                    closeModal={() => setIsModalOpen(false)}
                 />
             }
         </Modal>

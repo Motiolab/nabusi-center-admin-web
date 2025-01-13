@@ -59,6 +59,7 @@ interface IGetAllMemberListByCenterIdAdminResponseV1 {
     wellnessTicketIssuanceList: IWellnessTicketIssuance[]
     memberMemoList: IMemberMemo[]
     createdDate: string
+    socialName: string
 }
 
 

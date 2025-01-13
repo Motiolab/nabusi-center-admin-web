@@ -7,8 +7,7 @@ const wellnessTicketTableColumn: TableColumnsType<any> = [
     { title: "유형", dataIndex: "type", className: styles.tableColumnStyle + " body-content-standard", render: (value: string) => ticketValueEnToKr(value) },
     {
         title: "수강권명", dataIndex: "name", className: styles.tableColumnStyle + " body-content-accent", render: (value: string, record) => <Link
-            to={`/wellness-ticket/${record.id}`}
-            style={{ textDecorationLine: "none", color: "var(--Base-Base-Black)" }}>
+            to={`/wellness-ticket/${record.id}`}>
             {value}
         </Link>
     },

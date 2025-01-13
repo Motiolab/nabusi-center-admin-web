@@ -20,15 +20,13 @@ const TableWellnessLectureColumn: TableColumnsType<any> = [
     },
     {
         title: "수업명", dataIndex: "name", className: styles.tableColumnStyle + " body-content-accent", render: (value: string, record: IGetWellnessLectureAdminResponseV1) => <Link
-            to={`/wellness-lecture/detail/${record.id}`}
-            style={{ textDecorationLine: "none", color: "var(--Base-Base-Black)" }}>
+            to={`/wellness-lecture/detail/${record.id}`}>
             {value}
         </Link>
     },
     {
-        title: "담당 강사", dataIndex: "teacherName", className: styles.tableColumnStyle + " body-content-standard", render: (value: number, record: IGetWellnessLectureAdminResponseV1) => <Link
-            to={`/teacher/detail/${record.teacherId}`}
-            style={{ textDecorationLine: "none", color: "var(--Base-Base-Black)" }}>
+        title: "담당 강사", dataIndex: "teacherName", className: styles.tableColumnStyle + " body-content-accent", render: (value: number, record: IGetWellnessLectureAdminResponseV1) => <Link
+            to={`/teacher/detail/${record.teacherId}`}>
             {value}
         </Link>
     },

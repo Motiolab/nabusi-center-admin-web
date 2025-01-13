@@ -42,9 +42,7 @@ const Teacher = () => {
                         {
                             title: "이름 (닉네임)", dataIndex: "name", className: "body-content-accent", render: (value: string, record: IGetTeacherListByCenterIdAdminResponseV1) => {
                                 return <>
-                                    <Link
-                                        to={`/teacher/detail/${record.id}`}
-                                        style={{ textDecorationLine: "none", color: "var(--Base-Base-Black)" }}>
+                                    <Link to={`/teacher/detail/${record.id}`}>
                                         {value}
                                     </Link>
                                 </>

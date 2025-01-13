@@ -19,7 +19,7 @@ const WellnessTicket = () => {
     return <>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
             <TabList
-                tabItemList={[{ text: "수강권" }, { text: "수강권 진열" }]}
+                tabItemList={[{ text: "수강권" }]}
                 setSelectIdx={setSelectTab}
             />
         </div>

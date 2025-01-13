@@ -8,10 +8,8 @@ const TableMemberColumn: TableColumnsType<any> = [
     {
         title: "이름", dataIndex: "name", className: styles.tableColumnStyle + " body-content-accent", render: (value: string, record: IGetAllMemberListByCenterIdAdminResponseV1) => {
             return <>
-                <Link
-                    to={`/member/detail/${record.id}`}
-                    style={{ textDecorationLine: "none", color: "var(--Base-Base-Black)" }}>
-                    {value}
+                <Link to={`/member/detail/${record.id}`}>
+                    <div className="body-content-accent">{value}</div>
                 </Link>
             </>
         },
