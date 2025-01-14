@@ -23,7 +23,8 @@ const CheckReservation = ({ wellnessLectureDetail, memberDetail, onClickBeforeBu
         if (res.data) {
             message.success("수업 예약 성공하였습니다.")
             onClickBeforeButton();
-            queryClient.invalidateQueries({ queryKey: ['getWellnessLectureDetailById', selectedCenterId, wellnessLectureDetail.id] })
+            queryClient.invalidateQueries({ queryKey: ['getWellnessLectureDetailById', selectedCenterId, wellnessLectureDetail.id] });
+            closeModal();
         }
     })
 
@@ -43,7 +44,7 @@ const CheckReservation = ({ wellnessLectureDetail, memberDetail, onClickBeforeBu
             wellnessTicketIssuanceId: selectedTicketId
         }
         createMutation.mutate(request)
-        closeModal();
+
     }
 
     return <>
@@ -156,7 +157,6 @@ const CheckReservation = ({ wellnessLectureDetail, memberDetail, onClickBeforeBu
                                             </div>
                                             <div
                                                 className="desktop-body-content-bold"
-                                                style={{ color: "var(--Primary-Primary)" }}
                                             >
                                                 {'무료 예약'}
                                             </div>

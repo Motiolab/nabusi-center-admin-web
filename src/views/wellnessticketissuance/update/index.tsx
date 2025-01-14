@@ -152,15 +152,17 @@ const WellnessTicketIssuanceUpdate = () => {
                     </div>
                 </div>
             </div>
-            <Flex align="center" style={{ marginTop: 16 }}>
-                <div style={{ width: 124 }}>미수금</div>
-                <div className="desktop-body-highlight-accent" style={{ color: "var(--Error-Error)" }}>
-                    {wellnessTicketIssuance?.unpaidValue.toLocaleString("ko-KR")}원
-                </div>
-                <div style={{ marginLeft: 24 }}>
-                    {wellnessTicketIssuance && <UnpaidWellnessTicketPayment wellnessTicketIssuance={wellnessTicketIssuance} />}
-                </div>
-            </Flex>
+            {wellnessTicketIssuance && wellnessTicketIssuance.unpaidValue > 0 && <>
+                <Flex align="center" style={{ marginTop: 16 }}>
+                    <div style={{ width: 124 }}>미수금</div>
+                    <div className="desktop-body-highlight-accent" style={{ color: "var(--Error-Error)" }}>
+                        {wellnessTicketIssuance.unpaidValue.toLocaleString("ko-KR")}원
+                    </div>
+                    <div style={{ marginLeft: 24 }}>
+                        {wellnessTicketIssuance && <UnpaidWellnessTicketPayment wellnessTicketIssuance={wellnessTicketIssuance} />}
+                    </div>
+                </Flex>
+            </>}
             <Flex align="center" style={{ marginTop: 16 }}>
                 <div style={{ width: 124 }}>사용 가능</div>
                 <div style={{ marginTop: 8 }}>
