@@ -3,6 +3,9 @@ import { CheckSelectedCenterId } from '@/shared';
 import Home from '@/views/home';
 import Member from '@/views/member';
 import MemberDetail from '@/views/member/detail';
+import Notice from '@/views/notice';
+import NoticeCreate from '@/views/notice/create';
+import NoticeUpdate from '@/views/notice/update';
 import { NoticeList } from '@/views/noticelist/ui';
 import { PushAlaram } from '@/views/pushalarm/ui';
 import AuthManagement from '@/views/setting/authmanagement';
@@ -51,8 +54,10 @@ const MainRoutes: RouteObject = {
                 { path: '/member/detail/:id', element: <MemberDetail /> },
                 { path: '/teacher', element: <Teacher /> },
                 { path: '/teacher/detail/:id', element: <TeacherDetail /> },
-                { path: '/wellness-ticket-issuance/update/:id', element: <WellnessTicketIssuanceUpdate /> }
-
+                { path: '/wellness-ticket-issuance/update/:id', element: <WellnessTicketIssuanceUpdate /> },
+                { path: '/notice', element: <Notice /> },
+                { path: '/notice/create', element: <NoticeCreate /> },
+                { path: '/notice/update/:id', element: <NoticeUpdate /> },
         ],
 };
 

@@ -2,7 +2,6 @@
 
 import { RootState } from "@/store";
 import { deleteNotice, getNotice } from "@/entities/notice/api";
-import { noticeTypeToReactNodeTag } from "@/entities/notice/model";
 import { BreadCrumb } from "@/features";
 import { Button, Modal } from "antd";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
@@ -72,7 +71,7 @@ const NoticeDetail = () => {
                             조회수 {viewCnt?.toLocaleString()}
                         </div>
                         <div>
-                            {inShow !== undefined && noticeTypeToReactNodeTag(inShow)}
+                            {/* {inShow !== undefined && noticeTypeToReactNodeTag(inShow)} */}
                         </div>
                     </div>
                 </div>

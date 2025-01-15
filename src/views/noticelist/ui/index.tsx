@@ -6,7 +6,6 @@ import { ReactComponent as Search } from '@/assets/icon/Search.svg';
 import styles from './styles.module.css'
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { noticeColumns, sortedNotices } from "../model";
 import { getNoticeList } from "@/entities/notice/api";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
@@ -46,7 +45,7 @@ const NoticeList = () => {
                     </div>
                 </div>
                 <div style={{ paddingBlock: "var(--Spacingml) 60px" }}>
-                    <Table className={styles.ticketProductTable} columns={noticeColumns} dataSource={sortedNotices(filteredBranch?.map((e, idx) => ({ ...e, key: idx })))} locale={{ emptyText }} pagination={{ position: ["bottomCenter"], className: styles.tablePagenation }} />
+                    {/* <Table className={styles.ticketProductTable} columns={noticeColumns} dataSource={sortedNotices(filteredBranch?.map((e, idx) => ({ ...e, key: idx })))} locale={{ emptyText }} pagination={{ position: ["bottomCenter"], className: styles.tablePagenation }} /> */}
                 </div>
             </div>
 

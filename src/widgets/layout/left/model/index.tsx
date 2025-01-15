@@ -40,7 +40,7 @@ const navMenuItemLis: ILayoutMenu[] = [
             {
                 text: "공지사항",
                 iconSvg: <Home width={24} height={24} />,
-                href: "/customercenter/noticelist"
+                href: "/notice"
             },
             // {
             //     text: "푸시 알림 발송",
