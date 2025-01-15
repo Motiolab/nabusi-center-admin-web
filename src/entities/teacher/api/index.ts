@@ -31,3 +31,7 @@ export const deleteTeacherById = (centerId: number, id: number) => {
 export const restoreTeacherById = (centerId: number, id: number) => {
     return api.patch<boolean>(`/v1/admin/teacher/restore/${centerId}?id=${id}`)
 }
+
+export const updateTeacherImageUrlById = (updateTeacherImageUrlByIdAdminRequestV1: IUpdateTeacherImageUrlByIdAdminRequestV1) => {
+    return api.patch<boolean>(`/v1/admin/teacher/update/image/${updateTeacherImageUrlByIdAdminRequestV1.centerId}`, updateTeacherImageUrlByIdAdminRequestV1)
+}

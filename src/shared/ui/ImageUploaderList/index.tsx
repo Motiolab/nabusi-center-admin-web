@@ -4,19 +4,18 @@ import { PlusOutlined } from '@ant-design/icons';
 import './index.css'
 import { getLocalAccessToken } from '@/shared/utils/token';
 
-
 interface IProps {
     setUploadedUrls: Function
     disabled?: boolean
-    imageUrlList?: Array<string>
+    initImageUrlList?: Array<string>
 }
 
-const ImageUploaderList = ({ setUploadedUrls, disabled, imageUrlList }: IProps) => {
+const ImageUploaderList = ({ setUploadedUrls, disabled, initImageUrlList }: IProps) => {
     const [fileList, setFileList] = useState<any[]>([]);
 
     useEffect(() => {
-        if (imageUrlList) {
-            const initialFileList = imageUrlList.map((url, index) => ({
+        if (initImageUrlList) {
+            const initialFileList = initImageUrlList.map((url, index) => ({
                 uid: `${index}`,
                 name: `Image-${index + 1}`,
                 status: 'done',
@@ -25,16 +24,18 @@ const ImageUploaderList = ({ setUploadedUrls, disabled, imageUrlList }: IProps) 
             }));
             setFileList(initialFileList);
         }
-    }, [])
+    }, [initImageUrlList])
 
-    const handleChange = ({ fileList: newFileList }: any) => {
+    const handleChange = ({ file, fileList: newFileList }: any) => {
         setFileList(newFileList);
 
-        const successfulUploads = newFileList
-            .filter((file: any) => file.status === 'done' && file.response)
-            .map((file: any) => file.response);
+        if (file.status === 'done' || file.status === 'removed') {
+            const successfulUploads = newFileList
+                .filter((file: any) => file.status === 'done' && file.response)
+                .map((file: any) => file.response);
 
-        setUploadedUrls(successfulUploads);
+            setUploadedUrls(successfulUploads);
+        }
     };
 
     return (

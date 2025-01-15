@@ -39,6 +39,7 @@ const SecondStep = ({ wellnessTicket, setStep, discountValue, memberId, setIsOpe
             setStep(1)
             setIsOpenModal(false)
             queryClient.invalidateQueries({ queryKey: ['getMemberDetailById', selectedCenterId, memberId] })
+            queryClient.invalidateQueries({ queryKey: ['getWellnessTicketIssuanceListByWellnessTicketId', selectedCenterId, wellnessTicket.id] })
         }
     })
     const calculateFinalPrice = (price: number, discountValue: number): number => {

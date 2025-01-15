@@ -1,6 +1,6 @@
 import { DropDownResult, updateCenterInfo } from "@/features";
 import { useEffect, useState } from "react";
-import { Button, Checkbox, Flex, Form, Input, Modal, TimePicker } from "antd";
+import { Button, Checkbox, Flex, Form, Input, Modal, TimePicker, message } from "antd";
 import { OutputOenString, formatNumber, cNTypeToKr } from "@/shared";
 import DaumPostcode from 'react-daum-postcode';
 import dayjs, { Dayjs } from "dayjs";
@@ -15,6 +15,7 @@ import { ReactComponent as Check } from "@/assets/icon/Check.svg"
 import { ReactComponent as Close } from "@/assets/icon/Close.svg"
 import { ReactComponent as Edit } from "@/assets/icon/Edit.svg"
 import { ReactComponent as Trash } from "@/assets/icon/Trash.svg"
+import ImageUploaderList from "@/shared/ui/ImageUploaderList";
 
 interface IRequestContactNumber {
     id: number;
@@ -55,6 +56,7 @@ const CenterInfo = () => {
     const [requestLoding, setRequestLoding] = useState<boolean>(false);
     const [roadName, setRoadName] = useState<string>('');
     const [form] = useForm();
+    const [uploadedUrls, setUploadedUrls] = useState<Array<string>>([]);
     const selectedCenterId = useSelector((state: RootState) => state.selectedCenterId)
     const [centerOpenInfoList, setCenterOpenInfoList] = useState<Array<IRequestOpenInfo>>(Array.from({ length: 7 }, (_, day) => ({
         id: undefined, closeTime: dayjs().hour(23).minute(0), day, openTime: dayjs().hour(5).minute(0), isDayOff: false,
@@ -77,11 +79,12 @@ const CenterInfo = () => {
         setEndCheck(res.openInfoList.map((e) => dayjs(e.closeTime).hour()))
         setIsDayOffCheckList(res.openInfoList.map((e) => e.isDayOff))
         setCenterInfoJoinAll(res)
+        setUploadedUrls(res.imageUrlList);
     }
 
     useEffect(() => {
         getCenterInfo(selectedCenterId)
-            .then(axiosRes => setInitValues(axiosRes.data))
+            .then(res => setInitValues(res.data))
             .catch(err => console.error("err", err))
     }, [])
 
@@ -114,14 +117,27 @@ const CenterInfo = () => {
         form.setFieldValue("address", fullAddress);
         setIsDaumPostcodeModal(false);
     };
+
     const onFinish = (value: IRequestCenterInfoJoinAll) => {
         if (!centerInfoJoinAll) return;
         setRequestLoding(true)
-        updateCenterInfo(selectedCenterId, { ...value, roadName: roadName, id: centerInfoJoinAll.id, code: centerInfoJoinAll.code, contactNumberList: value.contactNumberList.map((e) => ({ ...e, type: krToCNType(e.contactType) })), openInfoList: value.openInfoList.map((e) => ({ ...e, openTime: e.openTime.format("YYYY-MM-DDTHH:mm:00Z"), closeTime: e.closeTime.format("YYYY-MM-DDTHH:mm:00Z") })) })
-            .then((res) => { console.log(res.data) })
+        updateCenterInfo(selectedCenterId, {
+            ...value,
+            roadName: roadName,
+            id: centerInfoJoinAll.id,
+            code: centerInfoJoinAll.code,
+            contactNumberList: value.contactNumberList.map((e) => ({ ...e, type: krToCNType(e.contactType) })),
+            openInfoList: value.openInfoList.map((e) => ({
+                ...e, openTime: e.openTime.format("YYYY-MM-DDTHH:mm:00Z"),
+                closeTime: e.closeTime.format("YYYY-MM-DDTHH:mm:00Z")
+            })),
+            imageUrlList: uploadedUrls
+        })
+            .then((res) => { if (res.data) message.success("센터 수정 성공하였습니다.") })
             .catch((err) => { console.error("err", err); })
             .finally(() => setRequestLoding(false))
     }
+
     return <>
         {centerInfoJoinAll &&
             <Form onFinish={onFinish} form={form} layout="vertical">
@@ -159,6 +175,14 @@ const CenterInfo = () => {
                                 연락처는 회원에게 노출됩니다.
                             </div>
                         </div>
+
+                        <div style={{ marginTop: 16 }}>
+                            <div>센터 이미지</div>
+                            <div style={{ marginTop: 8 }}><ImageUploaderList setUploadedUrls={setUploadedUrls} initImageUrlList={uploadedUrls} /></div>
+                        </div>
+
+                    </div>
+                    <div style={{ width: "50%" }}>
                         {centerInfoJoinAll.code && <>
                             <Form.Item label="센터코드" >
                                 <div style={{ display: "flex", flexDirection: "column", gap: "var(--Spacingml)" }}>
@@ -188,8 +212,6 @@ const CenterInfo = () => {
                             </Form.Item>
                         </>}
 
-                    </div>
-                    <div style={{ width: "50%" }}>
                         <Form.Item label="운영 시간" >
                             <div>
                                 <Form.List name={"openInfoList"} initialValue={centerOpenInfoList}>

@@ -41,7 +41,7 @@ const CreateWellnessClassModal = () => {
         onSuccess: () => {
             setNewWellnessClassName('');
             setIsOpenNewClassNameInput(false);
-            queryClient.invalidateQueries({ queryKey: ['wellnessClassList', selectedCenterId] })
+            queryClient.invalidateQueries({ queryKey: ['getWellnessClassNameListByCenterId', selectedCenterId] })
         },
         onError: (error: AxiosError<string>) => message.error(error.response?.data)
     });

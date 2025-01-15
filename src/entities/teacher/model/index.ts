@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { deleteTeacherById, getTeacherDetailById, getTeacherListByCenterId, restoreTeacherById, updateTeacherCareerById, updateTeacherIntroduceAndNickNameById } from "../api";
+import { deleteTeacherById, getTeacherDetailById, getTeacherListByCenterId, restoreTeacherById, updateTeacherCareerById, updateTeacherImageUrlById, updateTeacherIntroduceAndNickNameById } from "../api";
 
 export const useQueryGetTeacherListByCenterId = (centerId: number) => {
     const query = useQuery({
@@ -33,6 +33,14 @@ export const useMutationUpdateTeacherIntroduceAndNickNameById = (callback: Funct
 export const useMutationUpdateTeacherCareerById = (callback: Function) => {
     const mutation = useMutation({
         mutationFn: updateTeacherCareerById,
+        onSuccess: (res) => { res.data && callback(res) }
+    })
+    return mutation;
+}
+
+export const useMutationUpdateTeacherImageUrlById = (callback: Function) => {
+    const mutation = useMutation({
+        mutationFn: updateTeacherImageUrlById,
         onSuccess: (res) => { res.data && callback(res) }
     })
     return mutation;

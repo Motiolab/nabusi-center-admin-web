@@ -34,7 +34,7 @@ const UpdateWellnessLecture = ({ id }: IProps) => {
     const [maxReservationCnt, setMaxReservationCnt] = useState<number | undefined>(undefined);
     const [uploadedUrls, setUploadedUrls] = useState<Array<string>>([]);
     const [description, setDescription] = useState<string>('');
-    const { data: wellnessLectureDetail, isError, error } = useQueryGetWellnessLectureDetailById(selectedCenterId, id);
+    const { data: wellnessLectureDetail } = useQueryGetWellnessLectureDetailById(selectedCenterId, id);
     const [selectedWellnessTicketManagementIdList, setSelectedWellnessTicketManagementIdList] = useState<(string | number | null)[][] | undefined>(undefined);
     const updateMutation = useMutationUpdateWellnessLecture((res: any) => {
         if (res.data) {
@@ -70,6 +70,7 @@ const UpdateWellnessLecture = ({ id }: IProps) => {
 
     useEffect(() => {
         if (!wellnessLectureDetail) return
+        console.log('wellnessLectureDetail', wellnessLectureDetail)
         setName(wellnessLectureDetail.name)
         setSelectedLectureTypeId(wellnessLectureDetail.wellnessLectureTypeId)
         setSelectedTeacherId(wellnessLectureDetail.teacherId)
@@ -199,10 +200,10 @@ const UpdateWellnessLecture = ({ id }: IProps) => {
                 }
             </Flex>
 
-            <Flex align="center" style={{ marginTop: 16 }}>
+            {wellnessLectureDetail && <Flex align="center" style={{ marginTop: 16 }}>
                 <div style={{ width: 124 }}>수업 이미지</div>
-                <ImageUploaderList setUploadedUrls={setUploadedUrls} disabled={false} />
-            </Flex>
+                <ImageUploaderList setUploadedUrls={setUploadedUrls} initImageUrlList={wellnessLectureDetail.lectureImageUrlList} />
+            </Flex>}
 
             <div style={{ marginTop: 40, marginBottom: 14 }}>
                 <div style={{ width: 124 }}>수업 소개</div>

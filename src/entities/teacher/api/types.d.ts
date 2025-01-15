@@ -22,6 +22,7 @@ interface IGetTeacherDetailById {
     career: string
     createdDate: string
     useNickName: boolean
+    imageUrl: string
     isDelete: boolean
 }
 interface IUpdateTeacherIntroduceAndNickNameByIdAdminRequestV1 {
@@ -35,5 +36,11 @@ interface IUpdateTeacherIntroduceAndNickNameByIdAdminRequestV1 {
 interface IUpdateTeacherCareerByIdAdminRequestV1 {
     id: number
     career: string
+    centerId: number
+}
+
+interface IUpdateTeacherImageUrlByIdAdminRequestV1 {
+    id: number
+    imageUrl: string
     centerId: number
 }

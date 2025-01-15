@@ -92,12 +92,12 @@ const WellnessLectureDetailInfo = ({ wellnessLectureDetail }: IProps) => {
                 <div>
                     {wellnessLectureDetail.lectureImageUrlList.length > 0 ? <Flex>
                         {wellnessLectureDetail.lectureImageUrlList.map((imageUrl: string) => {
-                            return <img src={imageUrl} className="body-caption-standardp" style={{ marginRight: 8 }} alt="수업 이미지" />
+                            return <img src={imageUrl} className="body-caption-standardp" style={{ marginRight: 8, width: 95, height: 95 }} alt="수업 이미지" />
                         })}
                     </Flex>
                         : <div> 수업 이미지가 없습니다.</div>
                     }
-                    {wellnessLectureDetail.lectureImageUrlList}</div>
+                </div>
             </Flex>
             <div style={{ textAlign: 'right' }}>
                 {wellnessLectureDetail.isDelete ?
