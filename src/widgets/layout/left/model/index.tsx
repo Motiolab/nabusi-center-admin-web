@@ -42,29 +42,11 @@ const navMenuItemLis: ILayoutMenu[] = [
                 iconSvg: <Home width={24} height={24} />,
                 href: "/customercenter/noticelist"
             },
-            {
-                text: "1:1 채팅",
-                iconSvg: <Home width={24} height={24} />,
-            },
-            {
-                text: "푸시 알림 발송",
-                iconSvg: <Home width={24} height={24} />,
-                href: "/customercenter/pushalarm"
-            },
-        ],
-    },
-    {
-        text: "통계",
-        isHaveChild: true,
-        children: [
-            {
-                text: "매출 통계",
-                iconSvg: <Home width={24} height={24} />,
-            },
-            {
-                text: "회원 통계",
-                iconSvg: <Home width={24} height={24} />,
-            },
+            // {
+            //     text: "푸시 알림 발송",
+            //     iconSvg: <Home width={24} height={24} />,
+            //     href: "/customercenter/pushalarm"
+            // },
         ],
     },
     {
@@ -81,15 +63,11 @@ const navMenuItemLis: ILayoutMenu[] = [
                 iconSvg: <Home width={24} height={24} />,
                 href: "/setting/authmanagement"
             },
-            {
-                text: "지점 관리",
-                iconSvg: <Home width={24} height={24} />,
-                href: "/setting/linkcenter"
-            },
-            {
-                text: "헬프 센터",
-                iconSvg: <Home width={24} height={24} />,
-            },
+            // {
+            //     text: "지점 관리",
+            //     iconSvg: <Home width={24} height={24} />,
+            //     href: "/setting/linkcenter"
+            // },
         ],
     },
 ]

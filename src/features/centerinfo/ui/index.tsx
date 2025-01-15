@@ -192,19 +192,13 @@ const CenterInfo = () => {
                                         <OutputOenString output={centerInfoJoinAll.code[2]} />
                                         <OutputOenString output={centerInfoJoinAll.code[3]} />
                                     </div>
-                                    <div style={{ backgroundColor: "var(--Neutrals-Neutrals50)", height: "120px", padding: "var(--Spacingsm)", color: "var(--Neutrals-Neutrals700)", display: "flex", flexDirection: "column", gap: "var(--Spacings)" }}>
+                                    <div style={{ backgroundColor: "var(--Neutrals-Neutrals50)", padding: "var(--Spacingsm)", color: "var(--Neutrals-Neutrals700)", display: "flex", flexDirection: "column", gap: "var(--Spacings)" }}>
                                         <div style={{ fontWeight: 600, fontSize: "18px" }}>
                                             센터 코드 사용 방법
                                         </div>
                                         <div style={{ fontSize: "16px" }}>
                                             <div>
-                                                1.사용 방법 1
-                                            </div>
-                                            <div>
-                                                2.사용 방법 2
-                                            </div>
-                                            <div>
-                                                3.사용 방법 3
+                                                1.사용 방법
                                             </div>
                                         </div>
                                     </div>
