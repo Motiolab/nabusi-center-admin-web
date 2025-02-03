@@ -12,6 +12,7 @@ import SuccessSignupCenterOwner from '@/views/successsignupcenterowner';
 import SuccessSignupManager from '@/views/successsignupmanager';
 import UserType from '@/views/usertype';
 import { Outlet } from 'react-router-dom';
+import LoginSuccess from '@/views/login/success';
 
 const LoginRoutes = {
     path: '/',
@@ -20,6 +21,7 @@ const LoginRoutes = {
         { path: '/adminuserregister', element: <AdminUserRegister /> },
         { path: '/centerregister', element: <CenterRegister /> },
         { path: '/centerselect', element: <CenterSelect /> },
+        { path: '/login/success', element: <LoginSuccess /> },
         { path: '/createuser', element: <CreateUserView /> },
         { path: '/findaccount', element: <FindAccount /> },
         { path: '/invite/admin', element: <InviteAdmin /> },
