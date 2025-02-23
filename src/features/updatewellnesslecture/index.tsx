@@ -33,6 +33,7 @@ const UpdateWellnessLecture = ({ id }: IProps) => {
     const [room, setRoom] = useState<string>('');
     const [maxReservationCnt, setMaxReservationCnt] = useState<number | undefined>(undefined);
     const [uploadedUrls, setUploadedUrls] = useState<Array<string>>([]);
+    const [price, setPrice] = useState<number | undefined>(undefined);
     const [description, setDescription] = useState<string>('');
     const { data: wellnessLectureDetail } = useQueryGetWellnessLectureDetailById(selectedCenterId, id);
     const [selectedWellnessTicketManagementIdList, setSelectedWellnessTicketManagementIdList] = useState<(string | number | null)[][] | undefined>(undefined);
@@ -80,16 +81,21 @@ const UpdateWellnessLecture = ({ id }: IProps) => {
         setRoom(wellnessLectureDetail.room)
         setMaxReservationCnt(wellnessLectureDetail.maxReservationCnt)
         setDescription(wellnessLectureDetail.description)
+        setPrice(wellnessLectureDetail.price)
     }, [wellnessLectureDetail])
 
     const clickUpdateButton = () => {
-        if (!maxReservationCnt) return message.error("정원을 입력해주세요.")
-        if (!room) return message.error("장소를 선택해주세요.")
-        if (!selectedTeacherId) return message.error('코치를 선택해주세요.')
+        if (!name) return message.error('수업명을 입력해주세요.')
         if (!selectedLectureTypeId) return message.error("수업 종류를 선택해주세요.")
+        if (!selectedTeacherId) return message.error('코치를 선택해주세요.')
         if (!startDateTime) return message.error("시작 날짜를 입력해주세요.")
         if (!startTime) return message.error("수업 시작 시간을 입력해주세요.")
         if (!endTime) return message.error("수업 종료 시간을 입력해주세요.")
+        if (!room) return message.error("장소를 선택해주세요.")
+        if (!maxReservationCnt) return message.error("정원을 입력해주세요.")
+        if (!selectedWellnessTicketManagementIdList || !wellnessTicketManagementNameList) return message.error("예약 가능한 수강권을 선택해주세요.");
+        if (uploadedUrls.length === 0) return message.error("수업 사진을 추가해주세요.")
+        if (!price) return message.error("가격을 입력해주세요.")
 
         if (!selectedWellnessTicketManagementIdList || !wellnessTicketManagementNameList) return message.error("예약 가능한 수강권을 선택해주세요.");
 
@@ -116,6 +122,7 @@ const UpdateWellnessLecture = ({ id }: IProps) => {
             startDateTime: startDateTime.set('hour', startTime.hour()).set('minute', startTime.minute()),
             endDateTime: startDateTime.set('hour', endTime.hour()).set('minute', endTime.minute()),
             wellnessTicketManagementIdList,
+            price
         };
         updateMutation.mutate(request)
     }
@@ -204,6 +211,20 @@ const UpdateWellnessLecture = ({ id }: IProps) => {
                 <div style={{ width: 124 }}>수업 이미지</div>
                 <ImageUploaderList setUploadedUrls={setUploadedUrls} initImageUrlList={wellnessLectureDetail.lectureImageUrlList} />
             </Flex>}
+
+            <Flex align="center" style={{ marginTop: 16 }}>
+                <div style={{ width: 124 }}>1회 가격</div>
+                <Input
+                    classNames={{ input: styles.searchInput }}
+                    type="number"
+                    placeholder="숫자만 입력해주세요."
+                    style={{ width: "160px", height: 44 }}
+                    value={price}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                        setPrice(event.target.value ? Number(event.target.value) : undefined)
+                    }
+                />
+            </Flex>
 
             <div style={{ marginTop: 40, marginBottom: 14 }}>
                 <div style={{ width: 124 }}>수업 소개</div>

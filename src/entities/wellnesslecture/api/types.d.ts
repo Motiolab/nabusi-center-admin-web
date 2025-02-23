@@ -5,7 +5,8 @@ interface ICreateWellnessLectureListWithWellnessClassAdminRequestV1 {
     centerId: number
     maxReservationCnt: number
     centerRoomId: number
-    classImageUrlList: string[];
+    classImageUrlList: string[]
+    price: number
     teacherId: number
     wellnessLectureTypeId: number
     startDateTime: Dayjs
@@ -41,6 +42,7 @@ interface IGetWellnessLectureDetailAdminResponseV1 {
     maxReservationCnt: number
     room: string
     lectureImageUrlList: string[]
+    price:number
     teacherId: number
     teacherName: string
     wellnessLectureTypeId: number
@@ -75,4 +77,5 @@ interface IUpdateWellnessLectureAdminRequestV1 {
     startDateTime: Dayjs
     endDateTime: Dayjs
     wellnessTicketManagementIdList: Array<number>
+    price: number
 }

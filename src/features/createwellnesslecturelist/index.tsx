@@ -43,6 +43,7 @@ const CreateWellnessLectureList = () => {
     const [selectedCenterRoomId, setSelectedCenterRoomId] = useState<number | undefined>(undefined);
     const [maxReservationCnt, setMaxReservationCnt] = useState<number | undefined>(undefined);
     const [uploadedUrls, setUploadedUrls] = useState<Array<string>>([]);
+    const [price, setPrice] = useState<number | undefined>(undefined);
     const [description, setDescription] = useState<string>('');
     const [selectedWellnessTicketManagementIdList, setSelectedWellnessTicketManagementIdList] = useState<(string | number | null)[][] | undefined>(undefined);
     const createMutation = useMutationCreateWellnessLectureListWithWellnessClass((res: any) => {
@@ -69,16 +70,19 @@ const CreateWellnessLectureList = () => {
     }, [wellnessTicketManagementNameList])
 
     const clickCreateButton = () => {
-        if (!maxReservationCnt) return message.error("정원을 입력해주세요.")
-        if (!selectedCenterRoomId) return message.error("장소를 선택해주세요.")
-        if (!selectedTeacherId) return message.error('코치를 선택해주세요.')
+        if (!lectureName) return message.error('수업명을 입력해주세요.')
         if (!selectedLectureTypeId) return message.error("수업 종류를 선택해주세요.")
+        if (!selectedTeacherId) return message.error('코치를 선택해주세요.')
         if (!startDateTime) return message.error("시작 날짜를 입력해주세요.")
         if (!endDateTime) return message.error("종료 날짜를 입력해주세요.")
         if (timeRanges.some((range) => !range.dayOfWeek || range.startTime === null || range.endTime === null)) {
             return message.error("요일, 시작 시간, 종료 시간을 모두 입력해주세요.");
         }
+        if (!selectedCenterRoomId) return message.error("장소를 선택해주세요.")
+        if (!maxReservationCnt) return message.error("정원을 입력해주세요.")
         if (!selectedWellnessTicketManagementIdList || !wellnessTicketManagementNameList) return message.error("예약 가능한 수강권을 선택해주세요.");
+        if (uploadedUrls.length === 0) return message.error("수업 사진을 추가해주세요.")
+        if (!price) return message.error("가격을 입력해주세요.")
 
         const wellnessTicketManagementIdList = selectedWellnessTicketManagementIdList.map((item: (string | number | null)[]) => {
             if (item.length === 1) {
@@ -120,6 +124,7 @@ const CreateWellnessLectureList = () => {
                     : "",
             })),
             wellnessTicketManagementIdList,
+            price: price
         };
         createMutation.mutate(request)
     }
@@ -200,6 +205,21 @@ const CreateWellnessLectureList = () => {
             <Flex align="center" style={{ marginTop: 16 }}>
                 <div style={{ width: 124 }}>수업 이미지</div>
                 <ImageUploaderList setUploadedUrls={setUploadedUrls} disabled={!selectedClassId} />
+            </Flex>
+
+            <Flex align="center" style={{ marginTop: 16 }}>
+                <div style={{ width: 124 }}>1회 가격</div>
+                <Input
+                    classNames={{ input: styles.searchInput }}
+                    type="number"
+                    placeholder="숫자만 입력해주세요."
+                    style={{ width: "160px", height: 44 }}
+                    value={price}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                        setPrice(event.target.value ? Number(event.target.value) : undefined)
+                    }
+                    disabled={!selectedClassId}
+                />
             </Flex>
 
             <div style={{ marginTop: 40, marginBottom: 14 }}>

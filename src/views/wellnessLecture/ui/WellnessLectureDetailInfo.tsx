@@ -52,6 +52,18 @@ const WellnessLectureDetailInfo = ({ wellnessLectureDetail }: IProps) => {
                         <div className="body-content-bold" style={{ width: 124 }}>수업 소개</div>
                         <div>{wellnessLectureDetail.description}</div>
                     </Flex>
+                    <Flex gap={16} style={{ alignItems: 'center', marginTop: 20 }}>
+                <div className="body-content-bold" style={{ width: 124 }}>수업 이미지</div>
+                <div>
+                    {wellnessLectureDetail.lectureImageUrlList.length > 0 ? <Flex>
+                        {wellnessLectureDetail.lectureImageUrlList.map((imageUrl: string) => {
+                            return <img src={imageUrl} className="body-caption-standardp" style={{ marginRight: 8, width: 95, height: 95 }} alt="수업 이미지" />
+                        })}
+                    </Flex>
+                        : <div> 수업 이미지가 없습니다.</div>
+                    }
+                </div>
+            </Flex>
                 </div>
                 <div style={{ flex: 1 }}>
                     <Flex gap={16} style={{ alignItems: 'center' }}>
@@ -75,6 +87,10 @@ const WellnessLectureDetailInfo = ({ wellnessLectureDetail }: IProps) => {
                         <div className="body-content-bold" style={{ width: 124 }}>진행여부</div>
                         <div>{!wellnessLectureDetail.isDelete ? <div className='body-caption-accent' style={{ textAlign: 'center', color: "var(--Primary-Primary)", backgroundColor: "var(--Primary-Primary50)", border: "1px solid var(--Primary-Primary)", borderRadius: "var(--Radiuss)", padding: 'var(--Spacingxxs) var(--Spacings) var(--Spacingxxs) var(--Spacings)', width: "37px" }}>진행</div> : <div className='body-caption-accent' style={{ textAlign: 'center', color: "var(--Error-Error)", backgroundColor: "var(--Error-Error50)", border: "1px solid var(--Error-Error)", borderRadius: "var(--Radiuss)", padding: 'var(--Spacingxxs) var(--Spacings) var(--Spacingxxs) var(--Spacings)', width: "49px" }}>폐강</div>}</div>
                     </Flex>
+                    <Flex gap={16} style={{ alignItems: 'center', marginTop: 20 }}>
+                        <div className="body-content-bold" style={{ width: 124 }}>1회 가격</div>
+                        <div>{wellnessLectureDetail.price.toLocaleString()}원</div>
+                    </Flex>
                 </div>
             </Flex >
             <Flex gap={16} style={{ alignItems: 'center', marginTop: 20 }}>
@@ -87,18 +103,7 @@ const WellnessLectureDetailInfo = ({ wellnessLectureDetail }: IProps) => {
                     </Flex>
                 </div>
             </Flex>
-            <Flex gap={16} style={{ alignItems: 'center', marginTop: 20 }}>
-                <div className="body-content-bold" style={{ width: 124 }}>수업 이미지</div>
-                <div>
-                    {wellnessLectureDetail.lectureImageUrlList.length > 0 ? <Flex>
-                        {wellnessLectureDetail.lectureImageUrlList.map((imageUrl: string) => {
-                            return <img src={imageUrl} className="body-caption-standardp" style={{ marginRight: 8, width: 95, height: 95 }} alt="수업 이미지" />
-                        })}
-                    </Flex>
-                        : <div> 수업 이미지가 없습니다.</div>
-                    }
-                </div>
-            </Flex>
+            
             <div style={{ textAlign: 'right' }}>
                 {wellnessLectureDetail.isDelete ?
                     <RestoreWellnessLecture centerId={wellnessLectureDetail.centerId} id={wellnessLectureDetail.id} /> :
