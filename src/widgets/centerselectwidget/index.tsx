@@ -4,6 +4,8 @@ import { Fragment, useEffect, useState } from 'react';
 import { useDispatch } from "react-redux";
 import * as SelectedCenterIdAction from '@/entities/selectedCenterId/model/reducer'
 import { useNavigate } from "react-router-dom";
+import { adminLoginSuccess } from "@/entities/account";
+import { getRedirectUrlAfterLogin, setRedirectUrlAfterLogin } from "@/shared/utils/redirectUrlAfterLogin";
 const CenterSelectWidget = () => {
     const navigate = useNavigate();
     const [centerList, setCenterList] = useState<Array<IGetMyCenterListByMemberIdResponseV1>>([])
@@ -14,6 +16,13 @@ const CenterSelectWidget = () => {
     }, [])
 
     const requestCenterListByAdminUser = async () => {
+        await adminLoginSuccess()
+        const redirectUrlAfterLogin = getRedirectUrlAfterLogin();
+        if (redirectUrlAfterLogin) {
+            setRedirectUrlAfterLogin('undefined');
+            navigate(redirectUrlAfterLogin);
+        }
+
         getCenterListByAdminUser()
             .then(res => setCenterList(res.data))
             .catch(error => console.error('error', error))
