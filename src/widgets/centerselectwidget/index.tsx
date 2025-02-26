@@ -6,6 +6,9 @@ import * as SelectedCenterIdAction from '@/entities/selectedCenterId/model/reduc
 import { useNavigate } from "react-router-dom";
 import { adminLoginSuccess } from "@/entities/account";
 import { getRedirectUrlAfterLogin, setRedirectUrlAfterLogin } from "@/shared/utils/redirectUrlAfterLogin";
+import { DeploymentUnitOutlined } from '@ant-design/icons';
+import { Flex, Row } from "antd";
+
 const CenterSelectWidget = () => {
     const navigate = useNavigate();
     const [centerList, setCenterList] = useState<Array<IGetMyCenterListByMemberIdResponseV1>>([])
@@ -49,7 +52,10 @@ const CenterSelectWidget = () => {
                         navigate('/home');
                     }}
                 >
+                    <Flex style={{justifyContent: 'space-between'}}>
                     <div className="body-highlight-bold">{center.name}</div>
+                    {center.isActive && <div><DeploymentUnitOutlined /></div>}
+                    </Flex>
                     <div className="body-caption-standard" style={{ marginTop: 8 }}>{center.address} {center.detailAddress}</div>
                     <div className="body-caption-accent" style={{
                         color: 'var(--Neutrals-Neutrals500)',

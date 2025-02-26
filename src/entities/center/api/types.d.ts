@@ -29,4 +29,5 @@ interface ICenterInfoJoinAll {
     roomList: ICenterRoom[];
     contactNumberList: IContactNumber[];
     imageUrlList: string[]
+    description: string
 }

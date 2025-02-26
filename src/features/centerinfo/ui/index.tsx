@@ -43,6 +43,8 @@ interface IRequestCenterInfoJoinAll {
     roomList: IRequestRoom[];
 }
 
+const { TextArea } = Input;
+
 const CenterInfo = () => {
     const [startCheck, setStartCheck] = useState<number[]>([]);
     const [endCheck, setEndCheck] = useState<number[]>([]);
@@ -57,6 +59,7 @@ const CenterInfo = () => {
     const [roadName, setRoadName] = useState<string>('');
     const [form] = useForm();
     const [uploadedUrls, setUploadedUrls] = useState<Array<string>>([]);
+    const  [description, setDescription] = useState<string>('');
     const selectedCenterId = useSelector((state: RootState) => state.selectedCenterId)
     const [centerOpenInfoList, setCenterOpenInfoList] = useState<Array<IRequestOpenInfo>>(Array.from({ length: 7 }, (_, day) => ({
         id: undefined, closeTime: dayjs().hour(23).minute(0), day, openTime: dayjs().hour(5).minute(0), isDayOff: false,
@@ -80,6 +83,7 @@ const CenterInfo = () => {
         setIsDayOffCheckList(res.openInfoList.map((e) => e.isDayOff))
         setCenterInfoJoinAll(res)
         setUploadedUrls(res.imageUrlList);
+        setDescription(res.description)
     }
 
     useEffect(() => {
@@ -131,7 +135,8 @@ const CenterInfo = () => {
                 ...e, openTime: e.openTime.format("YYYY-MM-DDTHH:mm:00Z"),
                 closeTime: e.closeTime.format("YYYY-MM-DDTHH:mm:00Z")
             })),
-            imageUrlList: uploadedUrls
+            imageUrlList: uploadedUrls,
+            description: description
         })
             .then((res) => { if (res.data) message.success("센터 수정 성공하였습니다.") })
             .catch((err) => { console.error("err", err); })
@@ -179,6 +184,17 @@ const CenterInfo = () => {
                         <div style={{ marginTop: 16 }}>
                             <div>센터 이미지</div>
                             <div style={{ marginTop: 8 }}><ImageUploaderList setUploadedUrls={setUploadedUrls} initImageUrlList={uploadedUrls} /></div>
+                        </div>
+
+                        <div style={{ marginTop: 40, marginBottom: 14 }}>
+                            <div style={{ width: 124 }}>센터 소개</div>
+                            <div style={{ marginTop: 24 }}>
+                                <TextArea
+                                    rows={4}
+                                    placeholder="센터 대해 간단하게 소개해 주세요."
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)} />
+                            </div>
                         </div>
 
                     </div>

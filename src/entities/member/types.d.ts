@@ -33,6 +33,7 @@ interface IGetMyCenterListByMemberIdResponseV1 {
     detailAddress: String
     name: string
     roleName: string
+    isActive: boolean
 }
 
 interface IAdminMemberByCenter {
