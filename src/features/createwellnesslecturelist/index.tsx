@@ -70,6 +70,7 @@ const CreateWellnessLectureList = () => {
     }, [wellnessTicketManagementNameList])
 
     const clickCreateButton = () => {
+        if (!selectedClassId) return message.error('그룹수업을 선택해주세요.')
         if (!lectureName) return message.error('수업명을 입력해주세요.')
         if (!selectedLectureTypeId) return message.error("수업 종류를 선택해주세요.")
         if (!selectedTeacherId) return message.error('코치를 선택해주세요.')
@@ -95,7 +96,7 @@ const CreateWellnessLectureList = () => {
         });
 
         const request: ICreateWellnessLectureListWithWellnessClassAdminRequestV1 = {
-            wellnessClassId: 1,
+            wellnessClassId: selectedClassId,
             name: lectureName,
             description: description,
             centerId: selectedCenterId,
