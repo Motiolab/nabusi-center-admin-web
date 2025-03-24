@@ -6,8 +6,8 @@ import { getRoomListByCenterId } from "../room/api";
 
 
 interface IProps {
-    value: number | undefined;
-    setValue: (value: number | undefined) => void;
+    value: string | undefined;
+    setValue: (value: string) => void;
     disabled: boolean
 }
 
@@ -32,7 +32,7 @@ const SelectCenterRoom = ({ value, setValue, disabled }: IProps) => {
                 disabled={disabled}
             >
                 {centerRoomList?.map((centerRoom: ICenterRoom) => (
-                    <Select.Option key={centerRoom.id} value={centerRoom.id}>
+                    <Select.Option key={centerRoom.id} value={centerRoom.name}>
                         {centerRoom.name}
                     </Select.Option>
                 ))}

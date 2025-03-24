@@ -40,7 +40,7 @@ const CreateWellnessLectureList = () => {
     const [startDateTime, setStartDateTime] = useState<Dayjs | undefined>(undefined);
     const [endDateTime, setEndDateTime] = useState<Dayjs | undefined>(undefined);
     const [timeRanges, setTimeRanges] = useState<TimeRange[]>([{ dayOfWeek: '', startTime: null, endTime: null }]);
-    const [selectedCenterRoomId, setSelectedCenterRoomId] = useState<number | undefined>(undefined);
+    const [selectedRoom, setSelectedRoom] = useState<string>('');
     const [maxReservationCnt, setMaxReservationCnt] = useState<number | undefined>(undefined);
     const [uploadedUrls, setUploadedUrls] = useState<Array<string>>([]);
     const [price, setPrice] = useState<number | undefined>(undefined);
@@ -78,7 +78,7 @@ const CreateWellnessLectureList = () => {
         if (timeRanges.some((range) => !range.dayOfWeek || range.startTime === null || range.endTime === null)) {
             return message.error("요일, 시작 시간, 종료 시간을 모두 입력해주세요.");
         }
-        if (!selectedCenterRoomId) return message.error("장소를 선택해주세요.")
+        if (!selectedRoom) return message.error("장소를 선택해주세요.")
         if (!maxReservationCnt) return message.error("정원을 입력해주세요.")
         if (!selectedWellnessTicketManagementIdList || !wellnessTicketManagementNameList) return message.error("예약 가능한 수강권을 선택해주세요.");
         if (uploadedUrls.length === 0) return message.error("수업 사진을 추가해주세요.")
@@ -100,7 +100,7 @@ const CreateWellnessLectureList = () => {
             description: description,
             centerId: selectedCenterId,
             maxReservationCnt: maxReservationCnt,
-            centerRoomId: selectedCenterRoomId,
+            room: selectedRoom,
             classImageUrlList: uploadedUrls,
             teacherId: selectedTeacherId,
             wellnessLectureTypeId: selectedLectureTypeId,
@@ -174,7 +174,7 @@ const CreateWellnessLectureList = () => {
             </Flex>
             <Flex align="center" style={{ marginTop: 16 }}>
                 <div style={{ width: 124 }}>수업 장소</div>
-                <SelectCenterRoom value={selectedCenterRoomId} setValue={setSelectedCenterRoomId} disabled={!selectedClassId} />
+                <SelectCenterRoom value={selectedRoom} setValue={setSelectedRoom} disabled={!selectedClassId} />
                 <ManageCenterRoom />
             </Flex>
             <Flex align="center" style={{ marginTop: 16 }}>

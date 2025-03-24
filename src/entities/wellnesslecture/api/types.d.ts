@@ -4,7 +4,7 @@ interface ICreateWellnessLectureListWithWellnessClassAdminRequestV1 {
     description: string
     centerId: number
     maxReservationCnt: number
-    centerRoomId: number
+    room: string
     classImageUrlList: string[]
     price: number
     teacherId: number
@@ -42,7 +42,7 @@ interface IGetWellnessLectureDetailAdminResponseV1 {
     maxReservationCnt: number
     room: string
     lectureImageUrlList: string[]
-    price:number
+    price: number
     teacherId: number
     teacherName: string
     wellnessLectureTypeId: number
