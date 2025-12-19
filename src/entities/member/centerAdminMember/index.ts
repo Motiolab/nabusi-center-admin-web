@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+
 import api from '@/entities/api'
 
 export const deleteAdminRoleByMemberIdList = (centerId: number, memberIdList: Array<number>) => {

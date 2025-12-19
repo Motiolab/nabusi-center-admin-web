@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+
 import api from '@/entities/api'
 
 export const inviteAdminMemberByCenterId = (centerId: number, params: IInviteAdminMemberRequestV1) => {
