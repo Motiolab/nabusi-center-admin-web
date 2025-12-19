@@ -16,7 +16,7 @@ const LayoutTop = ({ children }: { children: React.ReactNode }) => {
             <div className="home-layout-top-container" >
                 <div className="home-layout-top-text-container" >
                     <div className="home-layout-top-text-main" >
-                        samata
+                        nabusi
                     </div>
                     <div className="home-layout-top-text-sub" >
                         Admin

@@ -1,6 +1,6 @@
 import { LOCAL_STORAGE_KEY } from "@/entities/selectedCenterId/model/reducer";
 
-const LOCAL_STORAGE_ACCESS_TOKEN_KEY = 'X-Samata-Admin-Or-App-Member-Json-String';
+const LOCAL_STORAGE_ACCESS_TOKEN_KEY = 'X-Nabusi-Admin-Or-App-Member-Json-String';
 
 export const setLocalAccessToken = (accessToken: string) => {
     localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);

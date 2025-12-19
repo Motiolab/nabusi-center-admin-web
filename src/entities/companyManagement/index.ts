@@ -6,5 +6,5 @@ export const createCenter = (params: ICreateCenter): Promise<AxiosResponse<boole
 }
 
 export const updateRoleFunction = (centerId: number, params: Array<IUpdateRoleFunctionRequest>): Promise<AxiosResponse<any>> => {
-    return api.patch(`/samata-server/company-management-service/v1/admin/role_function/${centerId}`, params);
+    return api.patch(`/nabusi-server/company-management-service/v1/admin/role_function/${centerId}`, params);
 }

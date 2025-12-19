@@ -31,4 +31,4 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./e.g.token.json s3://samata-bucket/design/dev/
+        run: aws s3 cp --region ap-northeast-2 ./e.g.token.json s3://nabusi-bucket/design/dev/

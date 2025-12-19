@@ -1,5 +1,5 @@
 import { getSMTDesignDesignSystem } from "@/shared";
-import tokens from "@/samata-design-token/e.g.token.json"
+import tokens from "@/nabusi-design-token/e.g.token.json"
 
 const setCSSVariables = () => {
     const designTokens: ISMTToken = tokens;

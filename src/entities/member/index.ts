@@ -2,23 +2,23 @@ import { AxiosResponse } from 'axios';
 import api from '@/entities/api'
 
 export const createMember = (params: ICreateAdminMember): Promise<AxiosResponse<any>> => {
-    return api.post(`/samata-server/member-service/admin/member/v1/create/admin/member`, params);
+    return api.post(`/nabusi-server/member-service/admin/member/v1/create/admin/member`, params);
 }
 
 export const registerAdminUser = (params: IRegisterManager): Promise<AxiosResponse<any>> => {
-    return api.post(`/samata-server/member-service/admin/member/v1/create/user/info`, params);
+    return api.post(`/nabusi-server/member-service/admin/member/v1/create/user/info`, params);
 }
 
 export const isExistUserByMobile = (mobile: string): Promise<AxiosResponse<any>> => {
-    return api.get(`/samata-server/member-service/admin/member/v1/check/user/mobile/${mobile}`);
+    return api.get(`/nabusi-server/member-service/admin/member/v1/check/user/mobile/${mobile}`);
 }
 
 export const requestPhoneAuthCodeToFindId = (params: IRequestPhoneAuthCodeToFindId): Promise<AxiosResponse<any>> => {
-    return api.post(`/samata-server/member-service/admin/member/v1/request/code/findId`, params);
+    return api.post(`/nabusi-server/member-service/admin/member/v1/request/code/findId`, params);
 }
 
 export const requestPhoneAuthCodeToFindPassword = (params: IRequestPhoneAuthCodeToFindPassword): Promise<AxiosResponse<any>> => {
-    return api.post(`/samata-server/member-service/admin/member/v1/request/code/findPassword`, params);
+    return api.post(`/nabusi-server/member-service/admin/member/v1/request/code/findPassword`, params);
 }
 
 export const getCenterListByAdminUser = (): Promise<AxiosResponse<Array<IGetMyCenterListByMemberIdResponseV1>>> => {

@@ -1,2 +1,0 @@
-# samata-design-token
- 

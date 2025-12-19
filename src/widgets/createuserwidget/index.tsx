@@ -36,7 +36,7 @@ const CreateUserWidget = () => {
 
     const clickCreateUserButton = async () => {
         try {
-            const resCreateAccount = await createAccountSecurityServer({ userId, password, mobile: createUserStore.mobile, domain: "samata-admin" })
+            const resCreateAccount = await createAccountSecurityServer({ userId, password, mobile: createUserStore.mobile, domain: "nabusi-admin" })
             if (resCreateAccount.status !== 200) {
                 return alert('서버 오류');
             }
